@@ -23,3 +23,5 @@ type TCurrentUser = {
   username: string;
   role: string;
 };
+
+type TMenuItem = Required<MenuProps>['items'][number];

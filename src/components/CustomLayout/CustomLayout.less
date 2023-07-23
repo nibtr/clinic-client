@@ -1,0 +1,58 @@
+.custom-layout-wrapper {
+    .sider {
+        position: relative;
+        .text-trans {
+            width:64%;
+            overflow: hidden;
+            height: 18px;
+            &.collapsed {
+                width: 0px;
+            }
+        }
+    
+        .log-out-btn {
+            color: @blue-2;
+            position: absolute;
+            bottom: 12px;
+            width: 100%;
+            padding: 12px 0px;
+            &:hover {
+                cursor: pointer;
+            }
+            .log-out-text {
+                margin-left: 8px;
+            }
+        }
+    
+    
+        .logo {
+            font-size: 18px;
+            margin-block: 12px;
+            color: @blue-2;
+            position: relative;
+    
+    
+            .button-collapse {
+                position: absolute;
+                z-index: 1;
+                top: 0px;
+                right: -12px;
+                width: 28px;
+                height: 28px;
+                border-radius: 100px;
+                background-color: @white-1;
+                box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.1);
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .content-wrapper {
+        padding: 16px;
+        .card-wrapper {
+            height: 100%;
+        }
+    }
+}

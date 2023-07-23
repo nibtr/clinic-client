@@ -2,7 +2,7 @@ import { type Settings as LayoutSettings } from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from '@umijs/max';
 import { history } from '@umijs/max';
 import defaultSettings from '../config/defaultSettings';
-import { DENTIST_ROLE } from './constants/auth';
+import { STAFF_ROLE } from './constants/auth';
 import { errorConfig } from './requestErrorConfig';
 const loginPath = '/login';
 
@@ -14,7 +14,7 @@ export async function getInitialState(): Promise<{
   const fetchUserInfo = async () => {
     return {
       username: 'abc',
-      role: DENTIST_ROLE,
+      role: STAFF_ROLE,
     };
   };
 

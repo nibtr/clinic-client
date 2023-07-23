@@ -25,6 +25,20 @@ export default [
         path: '/staff',
         component: './Staff',
       },
+      {
+        name: 'portal',
+        path: '/portal',
+        component: './Portal',
+      },
+      {
+        name: 'login',
+        path: '/login',
+        component: './Login',
+      },
+      {
+        path: '/',
+        redirect: '/portal',
+      },
     ],
   },
   {
