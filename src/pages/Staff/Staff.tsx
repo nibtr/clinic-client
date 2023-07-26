@@ -1,4 +1,5 @@
 import CustomLayout from '@/components/CustomLayout';
+import { STAFF_APPOINTMENT_LINK } from '@/constants/internalLink';
 import {
   ApartmentOutlined,
   CalendarOutlined,
@@ -10,7 +11,7 @@ import NoFoundPage from '../404';
 
 const menuItems: TMenuItem[] = [
   {
-    key: '1',
+    key: STAFF_APPOINTMENT_LINK,
     icon: <CarryOutOutlined />,
     label: 'Appointment',
   },

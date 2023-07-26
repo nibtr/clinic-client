@@ -7,7 +7,7 @@ import {
 } from '@/constants/internalLink';
 import {
   ApartmentOutlined,
-  FileAddOutlined,
+  CalendarOutlined,
   UserAddOutlined,
   UserDeleteOutlined,
 } from '@ant-design/icons';
@@ -16,22 +16,22 @@ import NoFoundPage from '../404';
 
 const menuItems: TMenuItem[] = [
   {
-    key: '1',
+    key: ADMIN_STAFF_LINK,
     icon: <UserDeleteOutlined />,
     label: <Link to={ADMIN_STAFF_LINK}>Staff</Link>,
   },
   {
-    key: '2',
+    key: ADMIN_DENTIST_LINK,
     icon: <UserAddOutlined />,
     label: <Link to={ADMIN_DENTIST_LINK}>Dentist</Link>,
   },
   {
-    key: '3',
-    icon: <FileAddOutlined />,
+    key: ADMIN_APPOINTMENT_REQUEST_LINK,
+    icon: <CalendarOutlined />,
     label: <Link to={ADMIN_APPOINTMENT_REQUEST_LINK}>Appoint. Request</Link>,
   },
   {
-    key: '4',
+    key: ADMIN_ROOM_LINK,
     icon: <ApartmentOutlined />,
     label: <Link to={ADMIN_ROOM_LINK}>Room</Link>,
   },

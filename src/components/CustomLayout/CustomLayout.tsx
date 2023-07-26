@@ -2,7 +2,7 @@ import LogOutIcon from '@/assets/svg/LogOutIcon';
 import ToothIcon from '@/assets/svg/ToothIcon';
 import { LOGIN_LINK } from '@/constants/internalLink';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { Link, useModel } from '@umijs/max';
+import { Link, useLocation, useModel } from '@umijs/max';
 import { Card, Layout, Menu, Typography } from 'antd';
 import { useState } from 'react';
 import './CustomLayout.less';
@@ -16,9 +16,11 @@ const { Sider, Content } = Layout;
 
 function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
   const [collapsed, setCollapsed] = useState(false);
-
   const { initialState } = useModel('@@initialState');
-  console.log('initialState', initialState?.username);
+  const location = useLocation();
+  const defaultKey =
+    menuItems.find((item) => location.pathname.includes(item.key))?.key || menuItems[0].key;
+
   return (
     <main className="custom-layout-wrapper">
       <Layout>
@@ -42,7 +44,7 @@ function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
               {collapsed ? <RightOutlined /> : <LeftOutlined />}
             </button>
           </div>
-          <Menu mode="inline" defaultSelectedKeys={['1']} items={menuItems} />
+          <Menu mode="inline" defaultSelectedKeys={[defaultKey]} items={menuItems} />
           <Link to={LOGIN_LINK} replace className="flex-center log-out-btn">
             <LogOutIcon width={20} height={20} />
             <div className={`trans-effect text-trans ${collapsed ? 'collapsed' : ''}`}>

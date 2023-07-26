@@ -59,7 +59,7 @@ export default [
               },
               {
                 path: '/admin/staff/add',
-                component: './Admin/Staff/AddStaff',
+                component: './Admin/AddStaff',
               },
             ],
           },
@@ -72,11 +72,18 @@ export default [
               },
               {
                 path: '/admin/dentist/add',
-                component: './Admin/Dentist/AddDentist',
+                component: './Admin/AddDentist',
               },
             ],
           },
-
+          {
+            path: '/admin/appointment-request',
+            component: './Admin/AppointmentRequest',
+          },
+          {
+            path: '/admin/room',
+            component: './Admin/Room',
+          },
           {
             path: '/admin',
             redirect: '/admin/staff',
