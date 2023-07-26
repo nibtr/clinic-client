@@ -1,46 +1,19 @@
-import { type Settings as LayoutSettings } from '@ant-design/pro-components';
-import type { RunTimeLayoutConfig } from '@umijs/max';
-import { history } from '@umijs/max';
-import defaultSettings from '../config/defaultSettings';
-import { STAFF_ROLE } from './constants/auth';
+import { ADMIN_ROLE } from './constants/auth';
 import { errorConfig } from './requestErrorConfig';
-const loginPath = '/login';
 
-export async function getInitialState(): Promise<{
-  settings?: Partial<LayoutSettings>;
-  currentUser?: TCurrentUser;
-  fetchUserInfo?: () => Promise<TCurrentUser | undefined>;
-}> {
-  const fetchUserInfo = async () => {
-    return {
-      username: 'abc',
-      role: STAFF_ROLE,
-    };
-  };
-
-  const { location } = history;
-  if (location.pathname !== loginPath) {
-    const currentUser = await fetchUserInfo();
-    return {
-      fetchUserInfo,
-      currentUser,
-      settings: defaultSettings as Partial<LayoutSettings>,
-    };
-  }
+export async function getInitialState() {
+  // const token = getKey(keyLocalStorage.TOKEN);
+  let role: string = ADMIN_ROLE;
+  let username: string = 'namhoai';
+  // if (token) {
+  //   role = getKey(keyLocalStorage.ROLE) as string;
+  //   currentUser.username = getKey(keyLocalStorage.USERNAME);
+  // }
   return {
-    fetchUserInfo,
-    settings: defaultSettings as Partial<LayoutSettings>,
+    username,
+    role,
   };
 }
-
-export const layout: RunTimeLayoutConfig = ({ initialState }) => {
-  return {
-    childrenRender: (children) => {
-      return <main>{children}</main>;
-    },
-    ...initialState?.settings,
-  };
-};
 
 export const request = {
   ...errorConfig,

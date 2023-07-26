@@ -2,8 +2,8 @@ import LogOutIcon from '@/assets/svg/LogOutIcon';
 import ToothIcon from '@/assets/svg/ToothIcon';
 import { LOGIN_LINK } from '@/constants/internalLink';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { Link } from '@umijs/max';
-import { Card, Layout, Menu } from 'antd';
+import { Link, useModel } from '@umijs/max';
+import { Card, Layout, Menu, Typography } from 'antd';
 import { useState } from 'react';
 import './CustomLayout.less';
 
@@ -16,14 +16,22 @@ const { Sider, Content } = Layout;
 
 function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
   const [collapsed, setCollapsed] = useState(false);
+
+  const { initialState } = useModel('@@initialState');
+  console.log('initialState', initialState?.username);
   return (
     <main className="custom-layout-wrapper">
       <Layout>
         <Sider className="sider" trigger={null} collapsible theme="light" collapsed={collapsed}>
           <div className="logo flex-center">
             <ToothIcon width={32} height={32} />
-            <div className={`trans-effect text-trans ${collapsed ? 'collapsed' : ''}`}>
-              Dental clinic
+            <div
+              className={`trans-effect text-trans wrap-logo-header ${collapsed ? 'collapsed' : ''}`}
+            >
+              <Typography.Paragraph ellipsis={{ rows: 1 }} className="logo-title">
+                Dental clinic
+              </Typography.Paragraph>
+              <p className="username">@{initialState?.username}</p>
             </div>
             <button
               onClick={() => {

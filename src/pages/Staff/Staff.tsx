@@ -5,7 +5,7 @@ import {
   CarryOutOutlined,
   UserDeleteOutlined,
 } from '@ant-design/icons';
-import { Access, useAccess } from '@umijs/max';
+import { Access, Outlet, useAccess } from '@umijs/max';
 import NoFoundPage from '../404';
 
 const menuItems: TMenuItem[] = [
@@ -36,7 +36,7 @@ function Staff() {
   return (
     <Access accessible={access.staffRoute()} fallback={<NoFoundPage />}>
       <CustomLayout menuItems={menuItems}>
-        <section>Staff</section>
+        <Outlet />
       </CustomLayout>
     </Access>
   );

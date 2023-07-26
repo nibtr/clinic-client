@@ -1,13 +1,13 @@
-import { DENTIST_ROLE, STAFF_ROLE } from './constants/auth';
+import { ADMIN_ROLE, DENTIST_ROLE, STAFF_ROLE } from './constants/auth';
 
 /**
  * @see https://umijs.org/zh-CN/plugins/plugin-access
  * */
-export default function access(initialState: { currentUser: TCurrentUser }) {
-  const { currentUser } = initialState;
-  console.log('access', currentUser.role);
+export default function access(initialState: any) {
+  const { role } = initialState;
   return {
-    dentistRoute: () => currentUser && currentUser.role === DENTIST_ROLE,
-    staffRoute: () => currentUser && currentUser.role === STAFF_ROLE,
+    dentistRoute: () => role === DENTIST_ROLE,
+    staffRoute: () => role === STAFF_ROLE,
+    adminRoute: () => role === ADMIN_ROLE,
   };
 }

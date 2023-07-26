@@ -19,11 +19,46 @@ export default [
         name: 'dentist',
         path: '/dentist',
         component: './Dentist',
+        routes: [
+          {
+            path: '/dentist/appointment',
+            component: './Dentist/Appointment',
+          },
+          {
+            path: '/dentist',
+            redirect: '/dentist/appointment',
+          },
+        ],
       },
       {
         name: 'staff',
         path: '/staff',
         component: './Staff',
+        routes: [
+          {
+            path: '/staff/appointment',
+            component: './Staff/Appointment',
+          },
+          {
+            path: '/staff',
+            redirect: '/staff/appointment',
+          },
+        ],
+      },
+      {
+        name: 'admin',
+        path: '/admin',
+        component: './Admin',
+        routes: [
+          {
+            path: '/admin/staff',
+            component: './Admin/Staff',
+          },
+          {
+            path: '/admin',
+            redirect: '/admin/staff',
+          },
+        ],
       },
       {
         name: 'portal',
