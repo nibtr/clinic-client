@@ -52,8 +52,31 @@ export default [
         routes: [
           {
             path: '/admin/staff',
-            component: './Admin/Staff',
+            routes: [
+              {
+                path: '/admin/staff',
+                component: './Admin/Staff',
+              },
+              {
+                path: '/admin/staff/add',
+                component: './Admin/Staff/AddStaff',
+              },
+            ],
           },
+          {
+            path: '/admin/dentist',
+            routes: [
+              {
+                path: '/admin/dentist',
+                component: './Admin/Dentist',
+              },
+              {
+                path: '/admin/dentist/add',
+                component: './Admin/Dentist/AddDentist',
+              },
+            ],
+          },
+
           {
             path: '/admin',
             redirect: '/admin/staff',
