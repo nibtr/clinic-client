@@ -1,13 +1,13 @@
 import CustomLayout from '@/components/CustomLayout';
 import { DENTIST_APPOINTMENT_LINK } from '@/constants/internalLink';
-import { CalendarOutlined } from '@ant-design/icons';
 import { Access, Outlet, useAccess } from '@umijs/max';
+import { FaCalendarPlus } from 'react-icons/fa';
 import NoFoundPage from '../404';
 
 const menuItems: TMenuItem[] = [
   {
     key: DENTIST_APPOINTMENT_LINK,
-    icon: <CalendarOutlined />,
+    icon: <FaCalendarPlus />,
     label: 'Appointment',
   },
 ];

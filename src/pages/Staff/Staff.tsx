@@ -1,33 +1,30 @@
 import CustomLayout from '@/components/CustomLayout';
 import { STAFF_APPOINTMENT_LINK } from '@/constants/internalLink';
-import {
-  ApartmentOutlined,
-  CalendarOutlined,
-  CarryOutOutlined,
-  UserDeleteOutlined,
-} from '@ant-design/icons';
 import { Access, Outlet, useAccess } from '@umijs/max';
+import { FaCalendarCheck, FaCalendarPlus } from 'react-icons/fa';
+import { MdMeetingRoom, MdSick } from 'react-icons/md';
+
 import NoFoundPage from '../404';
 
 const menuItems: TMenuItem[] = [
   {
     key: STAFF_APPOINTMENT_LINK,
-    icon: <CarryOutOutlined />,
+    icon: <FaCalendarCheck />,
     label: 'Appointment',
   },
   {
     key: '2',
-    icon: <CalendarOutlined />,
+    icon: <FaCalendarPlus />,
     label: 'Appoint. request',
   },
   {
     key: '3',
-    icon: <UserDeleteOutlined />,
+    icon: <MdSick />,
     label: 'Patient',
   },
   {
     key: '4',
-    icon: <ApartmentOutlined />,
+    icon: <MdMeetingRoom />,
     label: 'Room',
   },
 ];

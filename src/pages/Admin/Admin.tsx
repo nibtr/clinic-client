@@ -5,34 +5,31 @@ import {
   ADMIN_ROOM_LINK,
   ADMIN_STAFF_LINK,
 } from '@/constants/internalLink';
-import {
-  ApartmentOutlined,
-  CalendarOutlined,
-  UserAddOutlined,
-  UserDeleteOutlined,
-} from '@ant-design/icons';
 import { Access, Link, Outlet, useAccess } from '@umijs/max';
+import { FaCalendarPlus, FaUserNurse } from 'react-icons/fa';
+import { FaUserGear } from 'react-icons/fa6';
+import { MdMeetingRoom } from 'react-icons/md';
 import NoFoundPage from '../404';
 
 const menuItems: TMenuItem[] = [
   {
     key: ADMIN_STAFF_LINK,
-    icon: <UserDeleteOutlined />,
+    icon: <FaUserGear />,
     label: <Link to={ADMIN_STAFF_LINK}>Staff</Link>,
   },
   {
     key: ADMIN_DENTIST_LINK,
-    icon: <UserAddOutlined />,
+    icon: <FaUserNurse />,
     label: <Link to={ADMIN_DENTIST_LINK}>Dentist</Link>,
   },
   {
     key: ADMIN_APPOINTMENT_REQUEST_LINK,
-    icon: <CalendarOutlined />,
+    icon: <FaCalendarPlus />,
     label: <Link to={ADMIN_APPOINTMENT_REQUEST_LINK}>Appoint. Request</Link>,
   },
   {
     key: ADMIN_ROOM_LINK,
-    icon: <ApartmentOutlined />,
+    icon: <MdMeetingRoom />,
     label: <Link to={ADMIN_ROOM_LINK}>Room</Link>,
   },
 ];
