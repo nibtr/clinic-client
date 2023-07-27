@@ -40,6 +40,22 @@ export default [
             component: './Staff/Appointment',
           },
           {
+            path: '/staff/appointment-request',
+            component: './Staff/AppointmentRequest',
+          },
+          {
+            path: '/staff/room',
+            component: './Staff/Room',
+          },
+          {
+            path: '/staff/patient',
+            component: './Staff/Patient',
+          },
+          {
+            path: '/staff/dentist',
+            component: './Staff/Dentist',
+          },
+          {
             path: '/staff',
             redirect: '/staff/appointment',
           },

@@ -1,11 +1,13 @@
+import Operator from '@/assets/svg/Operator';
 import PersonalInputForm from '@/components/PersonalInputForm';
 import { ADMIN_STAFF_LINK } from '@/constants/internalLink';
 import { Link } from '@umijs/max';
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, Col, Row } from 'antd';
+import './AddStaff.less';
 
 function AddStaff() {
   return (
-    <main>
+    <main className="admin-add-staff-wrapper">
       <Breadcrumb
         items={[
           {
@@ -16,7 +18,14 @@ function AddStaff() {
           },
         ]}
       />
-      <PersonalInputForm />
+      <Row justify="space-around">
+        <Col span={8} className="wrap-form">
+          <PersonalInputForm />
+        </Col>
+        <Col span={8}>
+          <Operator width="100%" />
+        </Col>
+      </Row>
     </main>
   );
 }
