@@ -49,7 +49,16 @@ export default [
           },
           {
             path: '/staff/patient',
-            component: './Staff/Patient',
+            routes: [
+              {
+                path: '/staff/patient',
+                component: './Staff/Patient',
+              },
+              {
+                path: '/staff/patient/add',
+                component: './Staff/AddPatient',
+              },
+            ],
           },
           {
             path: '/staff/dentist',

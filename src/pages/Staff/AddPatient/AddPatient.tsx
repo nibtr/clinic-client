@@ -1,20 +1,20 @@
-import DentistSVG from '@/assets/svg/Dentist';
+import PatientSVG from '@/assets/svg/Patient';
 import PersonalInputForm from '@/components/PersonalInputForm';
-import { ADMIN_DENTIST_LINK } from '@/constants/internalLink';
+import { STAFF_PATIENT_LINK } from '@/constants/internalLink';
 import { Link } from '@umijs/max';
 import { Breadcrumb, Col, Row } from 'antd';
-import './AddDentist.less';
+import './AddPatient.less';
 
-function AddDentist() {
+function AddPatient() {
   return (
-    <main className="admin-add-dentist-wrapper">
+    <main className="staff-add-patient-wrapper">
       <Breadcrumb
         items={[
           {
-            title: <Link to={ADMIN_DENTIST_LINK}>Dentist</Link>,
+            title: <Link to={STAFF_PATIENT_LINK}>Patient</Link>,
           },
           {
-            title: 'New dentist',
+            title: 'New patient',
           },
         ]}
       />
@@ -23,11 +23,11 @@ function AddDentist() {
           <PersonalInputForm />
         </Col>
         <Col span={8}>
-          <DentistSVG width="100%" />
+          <PatientSVG width="100%" />
         </Col>
       </Row>
     </main>
   );
 }
 
-export default AddDentist;
+export default AddPatient;

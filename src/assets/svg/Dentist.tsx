@@ -1,4 +1,4 @@
-const Dentist = ({ width = 500, height = 500 }: TIcon) => (
+const DentistSVG = ({ width = 500, height = 500 }: TIcon) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width={width} height={height}>
     <path
       style={{
@@ -895,4 +895,4 @@ const Dentist = ({ width = 500, height = 500 }: TIcon) => (
     />
   </svg>
 );
-export default Dentist;
+export default DentistSVG;

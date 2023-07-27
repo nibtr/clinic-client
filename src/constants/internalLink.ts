@@ -14,3 +14,4 @@ export const STAFF_APPOINTMENT_REQUEST_LINK = '/staff/appointment-request';
 export const STAFF_PATIENT_LINK = '/staff/patient';
 export const STAFF_ROOM_LINK = '/staff/room';
 export const STAFF_DENTIST_LINK = '/staff/dentist';
+export const STAFF_ADD_PATIENT = '/staff/patient/add';
