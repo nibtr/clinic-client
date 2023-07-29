@@ -1,6 +1,7 @@
 const colors = {
   'text-color': '#080708',
   'primary-color': '#1677FF',
+  'black': '#000000',
   'blue-1': '#061B48',
   'blue-2': '#0046B6',
   'blue-3': '#3BBAFF',
@@ -8,7 +9,6 @@ const colors = {
   'blue-5': '#03DAE1',
   'white-1': '#FDFDFD',
   'red-1': '#FF5964',
-
   'neutral-1': '#ffffff',
   'neutral-2': '#f5f6fa',
   'neutral-3': '#ebecf0',
@@ -19,6 +19,7 @@ const colors = {
   'neutral-8': '#414142',
   'neutral-9': '#2a2a2b',
   'neutral-10': '#000D0B',
+  'grey-1': '#cccccc',
 };
 
 export default colors;

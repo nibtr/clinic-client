@@ -1,0 +1,60 @@
+.new-appointment-wrapper{
+    width: 100%;
+    .btn-new-appointment{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: fixed;
+        bottom: 50px;
+        right: 20px;
+        transform: rotate(-45deg);
+    }
+}
+
+.form-appointment-wrapper{
+    .form-appointment-top{
+        display: flex;
+        justify-content: space-between;
+        .form-appointment-left{
+            flex-basis: 40%;
+            .date-item,
+            .time-item{
+                width: 100%;
+            }
+        }
+        .form-appointment-right{
+            flex-basis: 58%;
+        }
+    
+        .form-appointment-right{
+            .form-note{
+                height: 100%;
+                textarea{
+                    height: 200px;
+                    resize: none;
+                }
+            }
+        }
+    }
+
+    .form-appointment-bottom{
+        width: 100%;
+
+        .ant-form-item{
+            margin-bottom: 0;
+        }
+
+        button{
+            float: right;
+        }
+
+        button:first-child{
+            margin-left: 20px;
+        }
+    }
+   
+}
+
+.ant-modal-close{
+    display: none;
+}
