@@ -1,6 +1,7 @@
 ﻿import type { RequestOptions } from '@@/plugin-request/request';
 import type { RequestConfig } from '@umijs/max';
 import { message, notification } from 'antd';
+import { getKey, keyLocalStorage } from './utils/localStorage';
 
 // 错误处理方案： 错误类型
 enum ErrorShowType {
@@ -88,9 +89,18 @@ export const errorConfig: RequestConfig = {
   // 请求拦截器
   requestInterceptors: [
     (config: RequestOptions) => {
-      // 拦截请求配置，进行个性化处理。
-      const url = config?.url?.concat('?token = 123');
-      return { ...config, url };
+      if (config.headers === undefined) {
+        config.headers = {};
+      }
+      const accessToken = getKey(keyLocalStorage.TOKEN);
+      config.headers['Content-Type'] = config.headers['Content-Type'] ?? 'application/json';
+      if (accessToken) {
+        config.headers.Authorization = config.headers.Authorization ?? `Bearer ${accessToken}`;
+      }
+      const url = config.url as string;
+      // return { ...config, url: `${url}` };
+      return { ...config, url: `${HOST_NAME}${url}` };
+      //
     },
   ],
 

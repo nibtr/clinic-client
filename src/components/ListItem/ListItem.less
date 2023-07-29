@@ -1,0 +1,36 @@
+.list-item-wrapper {
+  margin-bottom: 16px;
+  padding: 4px;
+  border-radius: 8px;
+
+  &.item {
+    margin-bottom: 12px;
+    border-bottom: 2px solid @neutral-2;
+
+    &:hover {
+
+        box-shadow: 2px 2px 4px 2px @neutral-4;
+        border-color: transparent;
+      .wrap-delete-btn {
+        opacity: 1;
+      }
+    }
+  }
+
+  .header-item {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .wrap-delete-btn {
+    color: @red-1;
+    opacity: 0;
+
+    .delete-btn {
+        padding: 4px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+  }
+}
