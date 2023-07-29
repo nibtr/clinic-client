@@ -18,6 +18,7 @@ declare module 'react-fittext';
 declare module 'bizcharts-plugin-slider';
 
 declare const REACT_APP_ENV: 'test' | 'dev' | 'pre' | false;
+declare const HOST_NAME: string;
 
 type TCurrentUser = {
   username: string;
@@ -25,3 +26,18 @@ type TCurrentUser = {
 };
 
 type TMenuItem = Required<MenuProps>['items'][number];
+
+type TTemplateResponse<T> = {
+  statusCode: number;
+  data: T;
+};
+
+type TPersonnel = {
+  id: number;
+  nationalID: string;
+  name: string;
+  dob: string | null;
+  gender: string | null;
+  phone: string;
+  type: string;
+};
