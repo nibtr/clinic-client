@@ -1,44 +1,45 @@
 import { LIMIT_PER_PAGE } from '@/constants/dataQuery';
-import { useGetStaffs } from '@/services/admin/services';
+import { useGetAppointmentRequests } from '@/services/staff/services';
 import { getParams } from '@/utils/routing';
 import { useLocation, useNavigate } from '@umijs/max';
 import { useState } from 'react';
 
-type TData = {
-  listStaff: TPersonnel[];
-  total: number;
-  isLoading: boolean;
-};
-
-const getData = (page: number): TData => {
-  const { data, isLoading } = useGetStaffs(LIMIT_PER_PAGE, page - 1);
+const getData = (page: number, isToday: boolean) => {
+  const { data, isLoading } = useGetAppointmentRequests(LIMIT_PER_PAGE, page - 1, isToday);
   return {
-    listStaff: data?.data.list || [],
-    total: data?.data.total || 0,
+    list: data?.data?.list || [],
+    total: data?.data?.total || 0,
     isLoading,
   };
 };
 
-const useStaff = () => {
+const useAppointmentRequest = () => {
   let pageParam = getParams('page') || '1';
   const location = useLocation();
   const navigate = useNavigate();
   const [page, setPage] = useState(Number(pageParam));
+  const [isToday, setIsToday] = useState(false);
 
-  const { listStaff, total, isLoading } = getData(page);
+  const { list, total, isLoading } = getData(page, isToday);
 
   const changePage = (page: number) => {
     setPage(page);
     navigate(location.pathname + '?page=' + page);
   };
 
+  const changeIsToday = () => {
+    setIsToday(!isToday);
+  };
+
   return {
-    listStaff,
+    list,
     total,
     isLoading,
     page: Number(page),
     changePage,
+    isToday,
+    changeIsToday,
   };
 };
 
-export default useStaff;
+export default useAppointmentRequest;
