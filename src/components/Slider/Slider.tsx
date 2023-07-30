@@ -34,13 +34,15 @@ function Slider() {
   };
 
   return (
-    <Carousel swipeToSlide draggable className="carousel-wrapper" {...propsCarousel}>
-      {dataImg.map((item) => (
-        <div key={item.id}>
-          <img className='carousel-items' src={item.url} alt={item.alt} />
-        </div>
-      ))}
-    </Carousel>
+   <div className="carousel-wrapper">
+      <Carousel swipeToSlide draggable className="carousel-content" {...propsCarousel}>
+        {dataImg.map((item) => (
+          <div className='carousel-images' key={item.id}>
+            <img className='carousel-items' src={item.url} alt={item.alt} />
+          </div>
+        ))}
+      </Carousel>
+   </div>
   )
 }
 

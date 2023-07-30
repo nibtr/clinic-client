@@ -1,9 +1,24 @@
 .carousel-wrapper {
-  .carousel-items {
-    width: 100%;
-    height: 500px;
+  width: 100%;
+
+  .carousel-content {
+    display: flex; 
+    align-items: center; 
+
+    .carousel-images {
+      flex: 0 0 100%; 
+      height: 600px;
+
+      .carousel-items {
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        object-position: center;
+      }
+    }
   }
 }
+
 
 .ant-carousel .slick-dots li button {
   background: @black-1;
