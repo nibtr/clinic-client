@@ -29,13 +29,14 @@ function Slider() {
     dots: true,
     infinite: true,
     speed: 500,
+    autoplaySpeed: 3000,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
 
   return (
    <div className="carousel-wrapper">
-      <Carousel swipeToSlide draggable className="carousel-content" {...propsCarousel}>
+      <Carousel autoplay swipeToSlide draggable className="carousel-content" {...propsCarousel}>
         {dataImg.map((item) => (
           <div className='carousel-images' key={item.id}>
             <img className='carousel-items' src={item.url} alt={item.alt} />

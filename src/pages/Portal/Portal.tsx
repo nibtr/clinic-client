@@ -1,6 +1,7 @@
 import Carousel from '../../components/Slider';
-import Services from './Services';
+import Outstandings from './Outstandings';
 import AppoinmentForm from './Appoinment';
+import Services from './Services';
 import logo from '@/assets/images/logo-1.png';
 
 import './Portal.less';
@@ -15,8 +16,9 @@ function Portal() {
         </div>
       </header>
       <Carousel />
-      <Services />
+      <Outstandings />
       <AppoinmentForm />
+      <Services />
     </main>
   );
 }
