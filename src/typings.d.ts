@@ -42,6 +42,16 @@ type TPersonnel = {
   type: string;
 };
 
+type TAppointmentRequest = {
+  id: number;
+  appointmentTime: string;
+  requestTime: string;
+  note: string | null;
+  patientName: string;
+  patientPhone: string;
+  categoryName: string;
+};
+
 type TListResponse<T> = {
   list: T;
   total: number;

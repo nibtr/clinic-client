@@ -1,4 +1,4 @@
-import { Col, Row } from 'antd';
+import { Col, Row, Typography } from 'antd';
 import { BsTrash } from 'react-icons/bs';
 import './ListItem.less';
 
@@ -16,7 +16,16 @@ function ListItem({ fields, header }: IListItemProps) {
         let span = index === 4 ? 6 : 4;
         return (
           <Col span={span} key={item} className={`flex-center ${header ? 'header-item' : ''}`}>
-            {item}
+            <Typography.Paragraph
+              ellipsis={{
+                rows: 1,
+                symbol: '...',
+                tooltip: item,
+              }}
+              className="ant-typo-mb0"
+            >
+              {item}
+            </Typography.Paragraph>
           </Col>
         );
       })}
