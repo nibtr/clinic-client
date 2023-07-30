@@ -6,7 +6,7 @@ export const getKeyAdmin = {
 };
 
 export const useGetStaffs = (limit: number, page: number) => {
-  return useQuery<TTemplateResponse<TGetStaffsResponse>, Error>({
+  return useQuery<TTemplateResponse<TListResponse<TPersonnel[]>>, Error>({
     queryKey: [...getKeyAdmin.staffs, page],
     queryFn: () => getStaffs(limit, page),
   });

@@ -41,3 +41,8 @@ type TPersonnel = {
   phone: string;
   type: string;
 };
+
+type TListResponse<T> = {
+  list: T;
+  total: number;
+};

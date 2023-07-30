@@ -13,7 +13,7 @@ type TData = {
 const getData = (page: number): TData => {
   const { data, isLoading } = useGetStaffs(LIMIT_PER_PAGE, page - 1);
   return {
-    listStaff: data?.data.listStaff || [],
+    listStaff: data?.data.list || [],
     total: data?.data.total || 0,
     isLoading,
   };
