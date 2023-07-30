@@ -17,6 +17,9 @@ dependencies:
   '@umijs/route-utils':
     specifier: ^2.2.2
     version: 2.2.2
+  '@validate-phone/antd-input':
+    specifier: ^1.6.3
+    version: 1.6.3(antd@5.5.1)(react@18.2.0)
   antd:
     specifier: ^5.5.1
     version: 5.5.1(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
@@ -5638,6 +5641,33 @@ packages:
   /@umijs/zod2ts@4.0.69:
     resolution: {integrity: sha512-whXJSz9vm8cuU+qUSGtcacuPGUG7Vp2yv1fiJ726mukb/bJS4uG/3tcCOOlkztV5cvkRB4QtZ6IEMaqvxtt7xw==}
     dev: true
+
+  /@validate-phone/antd-input@1.6.3(antd@5.5.1)(react@18.2.0):
+    resolution: {integrity: sha512-dbAw2I2W1Aygagh+4OJWXhRVES/xaNc94HUJ5yKyU2FRAPAmXMtjcvhQtL0nlwYyFFgEDhdp/jJJNTyplyqDAQ==}
+    peerDependencies:
+      antd: 4.x
+      react: '>= 16.8.0 || 17.x'
+    dependencies:
+      '@validate-phone/react-input': 1.6.2(react@18.2.0)
+      '@validate-phone/web': 1.6.1
+      antd: 5.5.1(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+      lodash: 4.17.21
+      react: 18.2.0
+      use-debounce: 7.0.1(react@18.2.0)
+    dev: false
+
+  /@validate-phone/react-input@1.6.2(react@18.2.0):
+    resolution: {integrity: sha512-AwsHcTTHGD3cgs8bYHn8q3Ydybt1n/pgWSdzcTB+/JupVX9AHrCulNkLONxqfwwRpqNC8nPvmJEdDS+jWoGCpw==}
+    peerDependencies:
+      react: '>= 16.8.0 || 17.x'
+    dependencies:
+      '@validate-phone/web': 1.6.1
+      react: 18.2.0
+    dev: false
+
+  /@validate-phone/web@1.6.1:
+    resolution: {integrity: sha512-rIYLmxE3r0e3cKBp4QYHNWHdwAbDeS1kB9qe45FruZ6M2Z9zyg8GF52hTasvyPp6a9xqh859MBTpYprYd+XVTg==}
+    dev: false
 
   /@vitejs/plugin-react@4.0.0(vite@4.3.1):
     resolution: {integrity: sha512-HX0XzMjL3hhOYm+0s95pb0Z7F8O81G7joUHgfDd/9J/ZZf5k4xX6QAMFkKsHFxaHlf6X7GD7+XuaZ66ULiJuhQ==}
@@ -17051,6 +17081,15 @@ packages:
       punycode: 1.3.2
       querystring: 0.2.0
     dev: true
+
+  /use-debounce@7.0.1(react@18.2.0):
+    resolution: {integrity: sha512-fOrzIw2wstbAJuv8PC9Vg4XgwyTLEOdq4y/Z3IhVl8DAE4svRcgyEUvrEXu+BMNgMoc3YND6qLT61kkgEKXh7Q==}
+    engines: {node: '>= 10.0.0'}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /use-isomorphic-layout-effect@1.1.2(@types/react@18.2.7)(react@18.1.0):
     resolution: {integrity: sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==}

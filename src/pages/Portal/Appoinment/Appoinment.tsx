@@ -1,11 +1,12 @@
-import { Form, Input, Button, Modal, DatePicker, TimePicker } from 'antd';
+import { Form, Input, Button, Modal, DatePicker, TimePicker, Select, InputNumber } from 'antd';
 import { useState } from 'react';
 import './Appoinment.less';
 import { PhoneOutlined, SendOutlined, UserOutlined } from '@ant-design/icons';
 
+
 function Appoinment() {
+
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [form] = Form.useForm();
     const showModal = () => {
         setIsModalOpen(true);
@@ -15,18 +16,30 @@ function Appoinment() {
         form.resetFields();
     };
     const onFinish = (values: Object) => {
+        //format date_of_appointment
         console.log('Form values:', values);
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-            setIsModalOpen(false);
-        }, 2000);
+        setIsModalOpen(false);
     };
+    const prefixSelector = (
+        <Form.Item name="prefix" noStyle>
+            <Select
+                style={{
+                    width: 68,
+                }}
+            >
+                <Select.Option value="84">+84</Select.Option>
+                <Select.Option value="85">+85</Select.Option>
+            </Select>
+        </Form.Item>
+    );
+
     return (
         <div className='new-appointment-wrapper'>
+
             <Button className='btn-new-appointment' icon={<SendOutlined />} type="primary" onClick={showModal}>
             </Button>
             <Modal
+                closeIcon={true}
                 open={isModalOpen}
                 onOk={onFinish}
                 footer={null}
@@ -40,7 +53,7 @@ function Appoinment() {
                         <div className='form-appointment-left'>
                             <Form.Item
                                 className='form-items'
-                                name={['user', 'name']}
+                                name='name'
                                 rules={[
                                     {
                                         required: true,
@@ -56,7 +69,7 @@ function Appoinment() {
 
                             <Form.Item
                                 className='form-items'
-                                name={['user', 'phone']}
+                                name='phone'
                                 rules={[
                                     {
                                         required: true,
@@ -64,14 +77,17 @@ function Appoinment() {
                                     },
                                 ]}
                             >
-                                <Input
+                                <InputNumber
+                                    addonBefore={prefixSelector}
+                                    className='phone-item'
                                     prefix={<PhoneOutlined />}
-                                    placeholder="phone" />
+                                    placeholder="phone"
+                                />
                             </Form.Item>
 
                             <Form.Item
                                 className='form-items'
-                                name={['user', 'date_of_appointment']}
+                                name='date_of_appointment'
                                 rules={[
                                     {
                                         type: 'date',
@@ -83,12 +99,19 @@ function Appoinment() {
 
                                 <DatePicker
                                     className='date-item'
-                                    placeholder="date of appointment" />
+                                    placeholder="date of appointment"
+                                    // disable date before today
+                                    disabledDate={(current) => {
+                                        return current && current.valueOf() < Date.now();
+                                    }}
+                                    hideDisabledOptions={true}
+                                    format={'DD/MM/YYYY'}
+                                />
                             </Form.Item>
 
                             <Form.Item
                                 className='form-items'
-                                name={['user', 'time_of_appointment']}
+                                name='time_of_appointment'
                                 rules={[
                                     {
                                         required: true,
@@ -101,20 +124,30 @@ function Appoinment() {
                                     className='time-item'
                                     placeholder="time of appointment"
                                     format={'HH:mm'}
+                                    disabledTime={() => ({
+                                        disabledHours: () => [0, 1, 2, 3, 4, 5, 6, 7, 17, 18, 19, 20, 21, 22, 23]
+                                    })
+                                    }
+                                    disabledDate={(current) => {
+                                        return current && current.valueOf() < Date.now();
+                                    }}
+                                    hideDisabledOptions={true}
+                                    minuteStep={5}
+                                    showNow={false}
                                 />
 
                             </Form.Item>
                         </div>
 
                         <div className='form-appointment-right'>
-                            <Form.Item className='form-note' name={['user', 'note']} >
+                            <Form.Item className='form-note' name='note' >
                                 <Input.TextArea placeholder='note' allowClear showCount />
                             </Form.Item>
                         </div>
                     </div>
                     <div className='form-appointment-bottom'>
                         <Form.Item>
-                            <Button htmlType="submit" type="primary" loading={loading}>
+                            <Button htmlType="submit" type="primary">
                                 Submit
                             </Button>
                             <Button onClick={handleCancel}>

@@ -1,7 +1,7 @@
 const colors = {
   'text-color': '#080708',
   'primary-color': '#1677FF',
-  'black': '#000000',
+  'black-1': '#080708',
   'blue-1': '#061B48',
   'blue-2': '#0046B6',
   'blue-3': '#3BBAFF',
