@@ -1,13 +1,22 @@
 import { Form, Input, Button, Modal, DatePicker, TimePicker, Select, InputNumber } from 'antd';
 import { useState } from 'react';
 import './Appoinment.less';
-import { PhoneOutlined, SendOutlined, UserOutlined } from '@ant-design/icons';
+import { SendOutlined, UserOutlined } from '@ant-design/icons';
+import { Moment } from 'moment';
 
+interface FormValues {
+    name: string;
+    prefix: string;
+    phone: string;
+    date_of_appointment: Moment | null;
+    time_of_appointment: Moment | null;
+    note: string;
+}
 
 function Appoinment() {
-
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [form] = Form.useForm();
+
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -15,20 +24,30 @@ function Appoinment() {
         setIsModalOpen(false);
         form.resetFields();
     };
-    const onFinish = (values: Object) => {
-        //format date_of_appointment
-        console.log('Form values:', values);
-        setIsModalOpen(false);
+    const onFinish = (values: FormValues) => {
+        let data = {
+            name: values['name'],
+            phone: values['prefix'] + values['phone'],
+            date_of_appointment: values.date_of_appointment?.format('DD/MM/YYYY'),
+            time_of_appointment: values.time_of_appointment?.format('HH:mm'),
+            note: values['note']
+        }
+        console.log('Form values:', data);
+        handleCancel();
     };
+
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
             <Select
                 style={{
                     width: 68,
                 }}
+                defaultValue="+84"
             >
-                <Select.Option value="84">+84</Select.Option>
-                <Select.Option value="85">+85</Select.Option>
+                <Select.Option value="+84">+84</Select.Option>
+                <Select.Option value="+82">+82</Select.Option>
+                <Select.Option value="+86">+86</Select.Option>
+                <Select.Option value="+886">+886</Select.Option>
             </Select>
         </Form.Item>
     );
@@ -41,7 +60,6 @@ function Appoinment() {
             <Modal
                 closeIcon={true}
                 open={isModalOpen}
-                onOk={onFinish}
                 footer={null}
             >
                 <Form
@@ -64,6 +82,7 @@ function Appoinment() {
                                 <Input
                                     prefix={<UserOutlined />}
                                     placeholder="name"
+                                    autoComplete="off"
                                 />
                             </Form.Item>
 
@@ -80,8 +99,8 @@ function Appoinment() {
                                 <InputNumber
                                     addonBefore={prefixSelector}
                                     className='phone-item'
-                                    prefix={<PhoneOutlined />}
                                     placeholder="phone"
+                                    min={0}
                                 />
                             </Form.Item>
 
