@@ -61,3 +61,29 @@ type TLoginResponse = {
   token: string;
   user: TCurrentUser;
 };
+type TRoom = {
+  id: number;
+  code: string;
+  name: string;
+};
+
+type TExaminationPost = {
+  time: string;
+  patientID: number;
+  dentistID: number;
+  assistantID?: number;
+  roomID: number;
+  note?: string;
+};
+
+interface TSession {
+  id: number;
+  status?: string;
+  type: string;
+  time: string;
+  patientID: number;
+  dentistID: number;
+  assistantID?: number;
+  roomID: number;
+  note?: string;
+}

@@ -43,8 +43,8 @@ const useAppointment = () => {
 
     // Submit form
     const onFinish = (values: FormValues) => {
-        const phoneData: string = values['prefix']?.toString() || '+84' + values['phone'];
-        const timeAppointment: string = values.date_of_appointment?.format('YYYY-MM-DD') + ' ' + values.time_of_appointment?.format('HH:mm:ss:SSS');
+        const phoneData: string = '0' + values['phone'];
+        const timeAppointment: string = values.date_of_appointment?.format('YYYY-MM-DD HH:mm:ss:SSS') || '';
         let data = {
             name: values['name'],
             phone: phoneData,
@@ -56,12 +56,24 @@ const useAppointment = () => {
         handleCancel();
     };
 
+    // Kiểm tra số nguyên
+    const integerParser = (value: any) => {
+        const parsedValue = parseInt(value, 10);
+        if (isNaN(parsedValue)) {
+            return 0;
+        }
+        return parsedValue;
+    };
+
+
+
     return ({
         onFinish,
         form,
         isModalOpen,
         handleCancel,
         showModal,
+        integerParser,
     })
 }
 
