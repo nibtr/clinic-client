@@ -1,41 +1,11 @@
 import { Form, Input, Button, Modal, DatePicker, TimePicker, Select, InputNumber } from 'antd';
-import { useState } from 'react';
-import './Appoinment.less';
+import './Appointment.less';
 import { SendOutlined, UserOutlined } from '@ant-design/icons';
-import { Moment } from 'moment';
+import useAppointment from './useAppointment';
 
-interface FormValues {
-    name: string;
-    prefix: string;
-    phone: string;
-    date_of_appointment: Moment | null;
-    time_of_appointment: Moment | null;
-    note: string;
-}
 
 function Appoinment() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [form] = Form.useForm();
-
-    const showModal = () => {
-        setIsModalOpen(true);
-    };
-    const handleCancel = () => {
-        setIsModalOpen(false);
-        form.resetFields();
-    };
-    const onFinish = (values: FormValues) => {
-        let data = {
-            name: values['name'],
-            phone: values['prefix'] + values['phone'],
-            date_of_appointment: values.date_of_appointment?.format('DD/MM/YYYY'),
-            time_of_appointment: values.time_of_appointment?.format('HH:mm'),
-            note: values['note']
-        }
-        console.log('Form values:', data);
-        handleCancel();
-    };
-
+    const { isModalOpen, showModal, handleCancel, form, onFinish } = useAppointment();
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
             <Select
@@ -55,7 +25,7 @@ function Appoinment() {
     return (
         <div className='new-appointment-wrapper'>
 
-            <Button className='btn-new-appointment' icon={<SendOutlined />} type="primary" onClick={showModal}>
+            <Button className='btn-new-appointment' icon={<SendOutlined  className='icon-new-appointment'/>} type="primary" onClick={showModal}>
             </Button>
             <Modal
                 closeIcon={true}

@@ -56,3 +56,8 @@ type TListResponse<T> = {
   list: T;
   total: number;
 };
+
+type TLoginResponse = {
+  token: string;
+  user: TCurrentUser;
+};

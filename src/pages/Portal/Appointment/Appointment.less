@@ -1,0 +1,87 @@
+.new-appointment-wrapper {
+  width: 100%;
+  .btn-new-appointment {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 52px;
+    right: 20px;
+    z-index: 100;
+  }
+
+  .icon-new-appointment {
+    font-size: 20px;
+    animation: 1s infinite;
+    transform: rotate(-45deg);
+    animation: shake 1s infinite;
+  }
+}
+
+.form-appointment-wrapper {
+  .form-appointment-top {
+    display: flex;
+    justify-content: space-between;
+    .form-appointment-left {
+      flex-basis: 45%;
+      .phone-item,
+      .date-item,
+      .time-item {
+        width: 100%;
+      }
+    }
+    .form-appointment-right {
+      flex-basis: 53%;
+    }
+
+    .form-appointment-right {
+      .form-note {
+        height: 100%;
+        textarea {
+          height: 200px;
+          resize: none;
+        }
+      }
+    }
+  }
+
+  .form-appointment-bottom {
+    width: 100%;
+
+    .ant-form-item {
+      margin-bottom: 0px;
+    }
+
+    button {
+      float: right;
+    }
+
+    button:first-child {
+      margin-left: 20px;
+    }
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(-45deg) scale(1) skew(1deg);
+  }
+  10% {
+    transform: rotate(-75deg) scale(1) skew(1deg);
+  }
+  20% {
+    transform: rotate(-25deg) scale(1) skew(1deg);
+  }
+  30% {
+    transform: rotate(-75deg) scale(1) skew(1deg);
+  }
+  40% {
+    transform: rotate(-25deg) scale(1) skew(1deg);
+  }
+  50% {
+    transform: rotate(-45deg) scale(1) skew(1deg);
+  }
+  100% {
+    transform: rotate(-45deg) scale(1) skew(1deg);
+  }
+}

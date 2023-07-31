@@ -1,6 +1,6 @@
 import Carousel from '../../components/Slider';
 import Outstandings from './Outstandings';
-import AppoinmentForm from './Appoinment';
+import Appointment from './Appointment';
 import Services from './Services';
 import logo from '@/assets/images/logo-1.png';
 
@@ -17,7 +17,7 @@ function Portal() {
       </header>
       <Carousel />
       <Outstandings />
-      <AppoinmentForm />
+      <Appointment />
       <Services />
     </main>
   );
