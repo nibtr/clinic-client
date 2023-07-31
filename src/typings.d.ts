@@ -61,3 +61,16 @@ type TLoginResponse = {
   token: string;
   user: TCurrentUser;
 };
+
+type TLoginResponse = {
+  token: string;
+  user: TCurrentUser;
+};
+
+type TMakeAppointmentRequest = {
+  name: string;
+  phone: number;
+  appointmentTime: string;
+  requestTime: string;
+  note: string | null;
+};
