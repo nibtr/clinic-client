@@ -1,11 +1,11 @@
-import { Form, Input, Button, Modal, DatePicker, TimePicker, Select, InputNumber } from 'antd';
+import { Form, Input, Button, Modal, DatePicker, Select, InputNumber } from 'antd';
 import './Appointment.less';
 import { SendOutlined, UserOutlined } from '@ant-design/icons';
 import useAppointment from './useAppointment';
 
 
 function Appoinment() {
-    const { isModalOpen, showModal, handleCancel, form, onFinish, integerParser } = useAppointment();
+    const { isModalOpen, showModal, handleCancel, form, onFinish, integerParser, categories, isLoading } = useAppointment();
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
             <Select
@@ -101,6 +101,32 @@ function Appoinment() {
                                     hideDisabledOptions={true}
                                     format="YYYY-MM-DD HH:mm"
                                 />
+                            </Form.Item>
+                            <Form.Item
+                                className='form-items'
+                                name='category'
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your category of appointment!',
+
+                                    },
+                                ]}
+                            >
+
+                                <Select
+                                    defaultValue="Type of category"
+                                >
+                                    {categories.map((category: TCategory) => {
+                                        return (
+                                            <Select.Option key={category.id} value={category.name}>
+                                                {category.name}
+                                            </Select.Option>
+                                        );
+                                    }
+                                    )}
+
+                                </Select>
                             </Form.Item>
                         </div>
 
