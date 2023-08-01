@@ -1,16 +1,26 @@
 import { useState } from 'react';
-import { Form, Input, Button, Modal, DatePicker, TimePicker, Select, InputNumber } from 'antd';
-
+import { Form } from 'antd';
 import { Moment } from 'moment';
+import { useMakeAppointment, useGetCategories } from '@/services/customer/services';
 
-interface FormValues {
+type FormValues = {
     name: string;
     prefix: string;
     phone: string;
     date_of_appointment: Moment | null;
     time_of_appointment: Moment | null;
+    category: string;
     note: string;
 }
+
+type TCategory = {
+    id: number;
+    code: string;
+    name: string;
+    description: string | null;
+};
+
+
 const useAppointment = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [form] = Form.useForm();
@@ -40,22 +50,6 @@ const useAppointment = () => {
         return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}:${milliseconds}`;
     }
 
-
-    // Submit form
-    const onFinish = (values: FormValues) => {
-        const phoneData: string = '0' + values['phone'];
-        const timeAppointment: string = values.date_of_appointment?.format('YYYY-MM-DD HH:mm:ss:SSS') || '';
-        let data = {
-            name: values['name'],
-            phone: phoneData,
-            note: values['note'],
-            appointment_time: timeAppointment,
-            request_time: getCurrentTime(),
-        }
-        console.log('Form values:', data);
-        handleCancel();
-    };
-
     // Kiểm tra số nguyên
     const integerParser = (value: any) => {
         const parsedValue = parseInt(value, 10);
@@ -64,6 +58,27 @@ const useAppointment = () => {
         }
         return parsedValue;
     };
+
+    // Submit form
+    const onFinish = (values: FormValues) => {
+        const timeAppointment: string = values.date_of_appointment?.format('YYYY-MM-DD HH:mm:ss:SSS') || '';
+        let data = {
+            name: values['name'],
+            phone: '0' + values['phone'],
+            appointment_time: timeAppointment,
+            request_time: getCurrentTime(),
+            category: values['category'],
+            note: values['note'],
+        }
+        // useMakeAppointment(data.name, data.phone, data.appointment_time, data.request_time, data.category, data.note);
+        console.log('Form values:', data);
+        handleCancel();
+    };
+
+
+    // get categories
+    const { data, isLoading } = useGetCategories();
+    const categories: TCategory[] = data?.data.list || [];
 
 
 
@@ -74,6 +89,8 @@ const useAppointment = () => {
         handleCancel,
         showModal,
         integerParser,
+        categories,
+        isLoading,
     })
 }
 

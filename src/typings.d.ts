@@ -69,8 +69,16 @@ type TLoginResponse = {
 
 type TMakeAppointmentRequest = {
   name: string;
-  phone: number;
+  phone: string;
   appointmentTime: string;
   requestTime: string;
+  category: string;
   note: string | null;
+};
+
+type TCategory = {
+  id: number;
+  code: string;
+  name: string;
+  description: string | null;
 };
