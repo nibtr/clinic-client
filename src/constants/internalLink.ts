@@ -9,7 +9,8 @@ export const ADMIN_ADD_DENTIST = '/admin/dentist/add';
 
 export const DENTIST_APPOINTMENT_LINK = '/dentist/appointment';
 
-export const STAFF_APPOINTMENT_LINK = '/staff/appointment';
+export const STAFF_EXAMINATION_LINK = '/staff/examination';
+export const STAFF_ADD_EXAMINATION = '/staff/examination/add';
 export const STAFF_APPOINTMENT_REQUEST_LINK = '/staff/appointment-request';
 export const STAFF_PATIENT_LINK = '/staff/patient';
 export const STAFF_ROOM_LINK = '/staff/room';

@@ -5,13 +5,14 @@ import './ListItem.less';
 interface IListItemProps {
   fields: string[];
   header?: boolean;
+  canDelete?: boolean;
   onClick?: () => void;
   onDelete?: () => void;
 }
 
-function ListItem({ fields, header }: IListItemProps) {
+function ListItem({ fields, header, canDelete, onClick, onDelete }: IListItemProps) {
   return (
-    <Row className={`list-item-wrapper trans-effect ${header ? '' : 'item'}`}>
+    <Row onClick={onClick} className={`list-item-wrapper trans-effect ${header ? '' : 'item'}`}>
       {fields.map((item: string, index: number) => {
         let span = index === 4 ? 6 : 4;
         return (
@@ -29,9 +30,9 @@ function ListItem({ fields, header }: IListItemProps) {
           </Col>
         );
       })}
-      {!header && (
+      {!header && canDelete && (
         <Col span={2} className="flex-center wrap-delete-btn trans-effect">
-          <div className="delete-btn flex-center">
+          <div className="delete-btn flex-center" onClick={onDelete}>
             <BsTrash />
           </div>
         </Col>
@@ -42,6 +43,7 @@ function ListItem({ fields, header }: IListItemProps) {
 
 ListItem.defaultProps = {
   header: false,
+  canDelete: true,
   onClick: () => {},
   onDelete: () => {},
 };

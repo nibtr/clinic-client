@@ -1,9 +1,9 @@
+import AddButton from '@/components/AddButton';
 import ListItem from '@/components/ListItem';
 import { ADMIN_ADD_STAFF } from '@/constants/internalLink';
 import { getGender } from '@/utils/convertData';
-import { PlusOutlined } from '@ant-design/icons';
 import { Link } from '@umijs/max';
-import { Button, Empty, Pagination, Row, Spin } from 'antd';
+import { Empty, Pagination, Row, Spin } from 'antd';
 import { Fragment } from 'react';
 import './Staff.less';
 import useStaff from './useStaff';
@@ -33,10 +33,8 @@ function Staff() {
   return (
     <main className="admin-staff-page-wrapper">
       <header className="header">
-        <Link to={ADMIN_ADD_STAFF}>
-          <Button icon={<PlusOutlined />} type="primary" className="new-staff-btn">
-            New staff
-          </Button>
+        <Link to={ADMIN_ADD_STAFF} className="new-staff-btn">
+          <AddButton>New Staff</AddButton>
         </Link>
         <ListItem header fields={['Name', 'DoB', 'Gender', 'Phone', 'National ID']} />
       </header>

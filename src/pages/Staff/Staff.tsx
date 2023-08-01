@@ -1,8 +1,8 @@
 import CustomLayout from '@/components/CustomLayout';
 import {
-  STAFF_APPOINTMENT_LINK,
   STAFF_APPOINTMENT_REQUEST_LINK,
   STAFF_DENTIST_LINK,
+  STAFF_EXAMINATION_LINK,
   STAFF_PATIENT_LINK,
   STAFF_ROOM_LINK,
 } from '@/constants/internalLink';
@@ -14,9 +14,9 @@ import NoFoundPage from '../404';
 
 const menuItems: TMenuItem[] = [
   {
-    key: STAFF_APPOINTMENT_LINK,
+    key: STAFF_EXAMINATION_LINK,
     icon: <FaCalendarCheck />,
-    label: <Link to={STAFF_APPOINTMENT_LINK}>Appointment</Link>,
+    label: <Link to={STAFF_EXAMINATION_LINK}>Examination</Link>,
   },
   {
     key: STAFF_APPOINTMENT_REQUEST_LINK,
