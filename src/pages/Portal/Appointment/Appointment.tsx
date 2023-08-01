@@ -5,19 +5,19 @@ import useAppointment from './useAppointment';
 
 
 function Appoinment() {
-    const { isModalOpen, showModal, handleCancel, form, onFinish } = useAppointment();
+    const { isModalOpen, showModal, handleCancel, form, onFinish, integerParser } = useAppointment();
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
             <Select
                 style={{
                     width: 68,
                 }}
-                defaultValue="+84"
+                defaultValue="0"
             >
-                <Select.Option value="+84">+84</Select.Option>
-                <Select.Option value="+82">+82</Select.Option>
-                <Select.Option value="+86">+86</Select.Option>
-                <Select.Option value="+886">+886</Select.Option>
+                <Select.Option value="0">+84</Select.Option>
+                {/* <Select.Option value="+82">+82</Select.Option>      // Korea
+                <Select.Option value="+86">+86</Select.Option>      // China
+                <Select.Option value="+886">+886</Select.Option>    // Taiwan */}
             </Select>
         </Form.Item>
     );
@@ -71,6 +71,9 @@ function Appoinment() {
                                     className='phone-item'
                                     placeholder="phone"
                                     min={0}
+                                    max={999999999}
+                                    parser={integerParser}
+
                                 />
                             </Form.Item>
 
@@ -87,50 +90,27 @@ function Appoinment() {
                             >
 
                                 <DatePicker
+                                    showTime={{ minuteStep: 5 }}
                                     className='date-item'
                                     placeholder="date of appointment"
-                                    // disable date before today
                                     disabledDate={(current) => {
                                         return current && current.valueOf() < Date.now();
                                     }}
-                                    hideDisabledOptions={true}
-                                    format={'DD/MM/YYYY'}
-                                />
-                            </Form.Item>
-
-                            <Form.Item
-                                className='form-items'
-                                name='time_of_appointment'
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please input your time of appointment!',
-
-                                    },
-                                ]}
-                            >
-                                <TimePicker
-                                    className='time-item'
-                                    placeholder="time of appointment"
-                                    format={'HH:mm'}
                                     disabledTime={() => ({
                                         disabledHours: () => [0, 1, 2, 3, 4, 5, 6, 7, 17, 18, 19, 20, 21, 22, 23]
                                     })
                                     }
-                                    disabledDate={(current) => {
-                                        return current && current.valueOf() < Date.now();
-                                    }}
-                                    hideDisabledOptions={true}
-                                    minuteStep={5}
-                                    showNow={false}
-                                />
 
+                                    showNow={false}
+                                    hideDisabledOptions={true}
+                                    format="YYYY-MM-DD HH:mm"
+                                />
                             </Form.Item>
                         </div>
 
                         <div className='form-appointment-right'>
                             <Form.Item className='form-note' name='note' >
-                                <Input.TextArea placeholder='note' allowClear showCount />
+                                <Input.TextArea placeholder='note' allowClear showCount maxLength={300} />
                             </Form.Item>
                         </div>
                     </div>
