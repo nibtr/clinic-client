@@ -15,9 +15,6 @@ function Appoinment() {
                 defaultValue="0"
             >
                 <Select.Option value="0">+84</Select.Option>
-                {/* <Select.Option value="+82">+82</Select.Option>      // Korea
-                <Select.Option value="+86">+86</Select.Option>      // China
-                <Select.Option value="+886">+886</Select.Option>    // Taiwan */}
             </Select>
         </Form.Item>
     );
@@ -62,7 +59,7 @@ function Appoinment() {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input your phone!',
+                                        message: 'Please enter your phone number 10 digits!',
                                     },
                                 ]}
                             >
@@ -73,7 +70,6 @@ function Appoinment() {
                                     min={0}
                                     max={999999999}
                                     parser={integerParser}
-
                                 />
                             </Form.Item>
 
