@@ -46,6 +46,10 @@ export default [
                 path: '/staff/examination/add',
                 component: './Staff/AddExamination',
               },
+              {
+                path: '/staff/examination/:id',
+                component: './Staff/ExaminationDetail',
+              },
             ],
           },
           {

@@ -76,7 +76,7 @@ type TExaminationPost = {
   note?: string;
 };
 
-interface TSession {
+type TSession = {
   id: number;
   status?: string;
   type: string;
@@ -86,4 +86,10 @@ interface TSession {
   assistantID?: number;
   roomID: number;
   note?: string;
-}
+};
+
+type TReExamination = {
+  id: number;
+  relatedExaminationID: number;
+  Session: TSession;
+};
