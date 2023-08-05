@@ -46,11 +46,28 @@ export default [
                 path: '/staff/examination/add',
                 component: './Staff/AddExamination',
               },
+              {
+                path: '/staff/examination/:id',
+                component: './Staff/ExaminationDetail',
+              },
             ],
           },
           {
             path: '/staff/appointment-request',
             component: './Staff/AppointmentRequest',
+          },
+          {
+            path: '/staff/treatment-session',
+            routes: [
+              {
+                path: '/staff/treatment-session',
+                component: './Staff/TreatmentSession',
+              },
+              {
+                path: '/staff/treatment-session/:id',
+                component: './Staff/TreatmentSessionDetail',
+              },
+            ],
           },
           {
             path: '/staff/room',

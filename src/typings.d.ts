@@ -42,6 +42,18 @@ type TPersonnel = {
   type: string;
 };
 
+type TPatient = {
+  id: number;
+  nationalID: string;
+  name: string;
+  dob: string | null;
+  gender: string | null;
+  phone: string;
+  drugContraindication: string;
+  oralHealthStatus: string;
+  allergyStatus: string;
+};
+
 type TAppointmentRequest = {
   id: number;
   appointmentTime: string;
@@ -76,7 +88,7 @@ type TExaminationPost = {
   note?: string;
 };
 
-interface TSession {
+type TSession = {
   id: number;
   status?: string;
   type: string;
@@ -86,4 +98,10 @@ interface TSession {
   assistantID?: number;
   roomID: number;
   note?: string;
-}
+};
+
+type TReExamination = {
+  id: number;
+  relatedExaminationID: number;
+  Session: TSession;
+};
