@@ -8,9 +8,9 @@ body,
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 .ant-layout {
@@ -49,8 +49,8 @@ p {
 
 .flex-center {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .trans-effect {
@@ -58,7 +58,31 @@ p {
 }
 
 button {
-  border: none;
   background-color: transparent;
+  border: none;
 }
 
+.session-status {
+  padding: 2px 8px;
+  border: 2px solid transparent;
+  border-radius: 100px;
+  &.red {
+    color: @red-1;
+    border-color: @red-1;
+  }
+
+  &.green {
+    color: @green-2;
+    border-color: @green-2;
+  }
+
+  &.yellow {
+    color: @yellow-2;
+    border-color: @yellow-2;
+  }
+
+  &.blue {
+    color: @primary-color;
+    border-color: @primary-color;
+  }
+}

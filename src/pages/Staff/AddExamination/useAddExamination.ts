@@ -10,7 +10,7 @@ import { FormInstance } from 'antd';
 import { useEffect, useState } from 'react';
 
 const getListPatient = (page: number, searchName: string) => {
-  const { data, isLoading } = useGetPatients(LIMIT_PER_PAGE, page, searchName);
+  const { data, isLoading } = useGetPatients(LIMIT_PER_PAGE, page - 1, searchName);
   return {
     patientList: data?.data.list || [],
     totalPatient: data?.data.total || 0,
@@ -19,7 +19,7 @@ const getListPatient = (page: number, searchName: string) => {
 };
 
 const getListDentist = (page: number, searchName: string, workingDay?: string) => {
-  const { data, isLoading } = useGetDentists(LIMIT_PER_PAGE, page, searchName, workingDay);
+  const { data, isLoading } = useGetDentists(LIMIT_PER_PAGE, page - 1, searchName, workingDay);
   return {
     dentistList: data?.data.list || [],
     totalDentist: data?.data.total || 0,

@@ -1,6 +1,10 @@
 import { MALE_TYPE } from '@/constants/dataQuery';
 import { STAFF_EXAMINATION_LINK } from '@/constants/internalLink';
-import { convertSessionStatus, splitDateTime } from '@/utils/convertData';
+import {
+  convertSessionStatus,
+  convertSessionStatusToColor,
+  splitDateTime,
+} from '@/utils/convertData';
 import { Link } from '@umijs/max';
 import { Breadcrumb, Col, Divider, Empty, Row, Spin, Typography } from 'antd';
 import { Fragment, ReactNode } from 'react';
@@ -20,7 +24,7 @@ const FieldInfo = ({ label, value }: IFieldInfoProps) => {
   );
 };
 
-const renderPersonnelInfo = (personnel: TPersonnel) => {
+const renderPersonnelInfo = (personnel: TPersonnel | TPatient) => {
   let gender = '';
   if (personnel.gender) {
     gender = personnel.gender === MALE_TYPE ? 'male' : 'female';
@@ -48,30 +52,28 @@ const renderReExList = (reExList: TReExamination[]) => {
 
   return reExList.map((reEx) => {
     return (
-      <div>
-        <Row justify="space-around" className="reEx-item trans-effect">
-          <Col span={2}>{reEx.id}</Col>
-          <Col span={6}>{splitDateTime(reEx.Session.time)}</Col>
-          <Col span={14}>
-            <Typography.Paragraph
-              ellipsis={{
-                rows: 1,
-                symbol: '...',
-                tooltip: reEx.Session.note || '',
-              }}
-              className="ant-typo-mb0"
-            >
-              {reEx.Session.note || ''}
-            </Typography.Paragraph>
-          </Col>
-        </Row>
-      </div>
+      <Row key={reEx.id} justify="space-around" className="reEx-item trans-effect">
+        <Col span={2}>{reEx.id}</Col>
+        <Col span={6}>{splitDateTime(reEx.Session.time)}</Col>
+        <Col span={14}>
+          <Typography.Paragraph
+            ellipsis={{
+              rows: 1,
+              symbol: '...',
+              tooltip: reEx.Session.note || '',
+            }}
+            className="ant-typo-mb0"
+          >
+            {reEx.Session.note || ''}
+          </Typography.Paragraph>
+        </Col>
+      </Row>
     );
   });
 };
 
 const renderItem = (
-  examination: IExaminationResponse | null,
+  examination: ISessionResponse | null,
   reExList: TReExamination[],
   reExListLoading: boolean,
 ) => {
@@ -87,21 +89,33 @@ const renderItem = (
     <Row gutter={[16, 16]} justify="space-around">
       <Col span={8}>
         <Divider orientation="left">Patient</Divider>
-        {renderPersonnelInfo(examination.Patient.Personel)}
+        {renderPersonnelInfo(examination.Patient)}
         <FieldInfo label="Drug Contraindication" value={examination.Patient.drugContraindication} />
         <FieldInfo label="Allergy Status" value={examination.Patient.allergyStatus} />
         <Divider orientation="left">Dentist</Divider>
-        {renderPersonnelInfo(examination.Dentist.Personel)}
+        {renderPersonnelInfo(examination.Dentist)}
         {examination.Assistant && (
           <Fragment>
             <Divider orientation="left">Assistant</Divider>
-            {renderPersonnelInfo(examination.Assistant.Dentist.Personel)}
+            {renderPersonnelInfo(examination.Assistant)}
           </Fragment>
         )}
       </Col>
       <Col span={10}>
         <Divider orientation="left">Common information</Divider>
-        <FieldInfo label="Status" value={convertSessionStatus(examination.status || '')} />
+        <FieldInfo
+          label="Status"
+          value={
+            examination.status ? (
+              <span className={`session-status ${convertSessionStatusToColor(examination.status)}`}>
+                {convertSessionStatus(examination.status)}
+              </span>
+            ) : (
+              ''
+            )
+          }
+        />
+
         <FieldInfo label="Time" value={splitDateTime(examination.time)} />
         <FieldInfo label="Note" value={examination.note} />
         <Divider orientation="left">Room</Divider>

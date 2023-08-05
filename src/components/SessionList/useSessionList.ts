@@ -1,19 +1,8 @@
-import { LIMIT_PER_PAGE } from '@/constants/dataQuery';
-import { useGetExamination } from '@/services/staff/services';
 import { getParams } from '@/utils/routing';
 import { useLocation, useNavigate } from '@umijs/max';
 import { useState } from 'react';
 
-const getData = (page: number, isToday: boolean) => {
-  const { data, isLoading } = useGetExamination(LIMIT_PER_PAGE, page - 1, isToday);
-  return {
-    list: data?.data.list || [],
-    total: data?.data.total || 0,
-    isLoading,
-  };
-};
-
-const useExamination = () => {
+const useSessionList = (getData: TGetData) => {
   let pageParam = getParams('page') || '1';
   const location = useLocation();
   const navigate = useNavigate();
@@ -46,4 +35,4 @@ const useExamination = () => {
   };
 };
 
-export default useExamination;
+export default useSessionList;

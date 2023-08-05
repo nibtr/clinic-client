@@ -57,6 +57,19 @@ export default [
             component: './Staff/AppointmentRequest',
           },
           {
+            path: '/staff/treatment-session',
+            routes: [
+              {
+                path: '/staff/treatment-session',
+                component: './Staff/TreatmentSession',
+              },
+              {
+                path: '/staff/treatment-session/:id',
+                component: './Staff/TreatmentSessionDetail',
+              },
+            ],
+          },
+          {
             path: '/staff/room',
             component: './Staff/Room',
           },

@@ -44,3 +44,20 @@ export const convertSessionStatus = (status: string) => {
       return '';
   }
 };
+
+export const convertSessionStatusToColor = (status: string) => {
+  switch (status) {
+    case sessionStatus.SCHEDULED:
+      return 'yellow';
+    case sessionStatus.CANCELLED:
+      return 'red';
+    case sessionStatus.RESCHEDULED:
+      return 'yellow';
+    case sessionStatus.COMPLETED:
+      return 'green';
+    case sessionStatus.EXECUTING:
+      return 'blue';
+    default:
+      return '';
+  }
+};

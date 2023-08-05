@@ -3,7 +3,7 @@ type TDentistForPatient = {
   dentist: TPersonnel;
 };
 
-interface IExaminationResponse extends TSession {
+interface ISessionResponse extends TSession {
   id: number;
   status?: string;
   type: string;
@@ -13,23 +13,8 @@ interface IExaminationResponse extends TSession {
   assistantID?: number;
   roomID: number;
   note?: string;
-  Patient: {
-    id: number;
-    drugContraindication: string;
-    oralHealthStatus: string;
-    allergyStatus: string;
-    Personel: TPersonnel;
-  };
-  Dentist: {
-    id: number;
-    Personel: TPersonnel;
-  };
-  Assistant?: {
-    id: number;
-    Dentist: {
-      id: number;
-      Personel: TPersonnel;
-    };
-  };
+  Patient: TPatient;
+  Dentist: TPersonnel;
+  Assistant?: TPersonnel;
   Room: TRoom;
 }

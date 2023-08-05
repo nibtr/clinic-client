@@ -42,6 +42,18 @@ type TPersonnel = {
   type: string;
 };
 
+type TPatient = {
+  id: number;
+  nationalID: string;
+  name: string;
+  dob: string | null;
+  gender: string | null;
+  phone: string;
+  drugContraindication: string;
+  oralHealthStatus: string;
+  allergyStatus: string;
+};
+
 type TAppointmentRequest = {
   id: number;
   appointmentTime: string;

@@ -9,6 +9,7 @@ import {
   getPatients,
   getReExaminationOfExamination,
   getRooms,
+  getTreatmentSessions,
   postExamination,
 } from './callers';
 
@@ -21,6 +22,7 @@ export const getKeyStaff = {
   dentistForPatient: ['DENTIST_FOR_PATIENT'],
   examinationDetail: ['EXAMINATION_DETAIL'],
   reExOfExamination: ['RE_EX_OF_EXAMINATION'],
+  treatmentSessions: ['TREATMENT_SESSIONS'],
 };
 
 export const postKeyStaff = {
@@ -78,14 +80,14 @@ export const useGetDentistForPatient = (patientID: number) => {
 };
 
 export const useGetExamination = (limit: number, page: number, today?: boolean) => {
-  return useQuery<TTemplateResponse<TListResponse<IExaminationResponse[]>>, Error>({
+  return useQuery<TTemplateResponse<TListResponse<ISessionResponse[]>>, Error>({
     queryKey: [...getKeyStaff.examination, page, today],
     queryFn: () => getExaminations(limit, page, today),
   });
 };
 
 export const useGetExaminationDetail = (examinationID: number) => {
-  return useQuery<TTemplateResponse<IExaminationResponse>, Error>({
+  return useQuery<TTemplateResponse<ISessionResponse>, Error>({
     queryKey: [...getKeyStaff.examinationDetail, examinationID],
     queryFn: () => getExaminationDetail(examinationID),
   });
@@ -95,5 +97,12 @@ export const useGetReExaminationOfExamination = (id: number) => {
   return useQuery<TTemplateResponse<TReExamination[]>, Error>({
     queryKey: [...getKeyStaff.reExOfExamination, id],
     queryFn: () => getReExaminationOfExamination(id),
+  });
+};
+
+export const useGetTreatmentSession = (limit: number, page: number, today?: boolean) => {
+  return useQuery<TTemplateResponse<TListResponse<ISessionResponse[]>>, Error>({
+    queryKey: [...getKeyStaff.treatmentSessions, page, today],
+    queryFn: () => getTreatmentSessions(limit, page, today),
   });
 };
