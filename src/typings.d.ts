@@ -68,11 +68,11 @@ type TLoginResponse = {
 };
 
 type TMakeAppointmentRequest = {
-  name: string;
-  phone: string;
+  patientName: string;
+  patientPhone: string;
   appointmentTime: string;
   requestTime: string;
-  category: string;
+  categoryName: string;
   note: string | null;
 };
 

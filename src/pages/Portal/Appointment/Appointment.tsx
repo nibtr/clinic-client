@@ -5,7 +5,7 @@ import useAppointment from './useAppointment';
 
 
 function Appoinment() {
-    const { isModalOpen, showModal, handleCancel, form, onFinish, integerParser, categories, isLoading } = useAppointment();
+    const { isModalOpen, showModal, handleCancel, form, onFinish, integerParser, categories } = useAppointment();
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
             <Select
@@ -38,7 +38,7 @@ function Appoinment() {
                         <div className='form-appointment-left'>
                             <Form.Item
                                 className='form-items'
-                                name='name'
+                                name='patient_name'
                                 rules={[
                                     {
                                         required: true,
@@ -55,7 +55,7 @@ function Appoinment() {
 
                             <Form.Item
                                 className='form-items'
-                                name='phone'
+                                name='patient_phone'
                                 rules={[
                                     {
                                         required: true,
@@ -75,7 +75,7 @@ function Appoinment() {
 
                             <Form.Item
                                 className='form-items'
-                                name='date_of_appointment'
+                                name='appointment_time'
                                 rules={[
                                     {
                                         type: 'date',

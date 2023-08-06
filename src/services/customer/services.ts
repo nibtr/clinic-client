@@ -1,20 +1,37 @@
-import { useQuery } from 'react-query';
+import { message } from 'antd';
+import { useQuery, useMutation } from 'react-query';
 import { makeAppointment, getCategories } from './callers';
 
-export const makeAppointmentKey = {
-  appointmentRequest: ['MAKE_APPOINTMENT'],
+
+export const getAppointmentKey = {
+  appointment: ['MAKE_APPOINTMENT'],
+};
+
+export const postAppointmentKey = {
+  appointment: getAppointmentKey.appointment,
 };
 
 export const getCategoriesKey = {
   categories: ['GET_CATEGORIES'],
 };
 
-export const useMakeAppointment = (name: string, phone: string, appointmentTime: string, requestTime: string, category: string, note: string) => {
-  return useQuery<TTemplateResponse<TMakeAppointmentRequest>, Error>({
-    queryKey: [...makeAppointmentKey.appointmentRequest, name, phone, appointmentTime, requestTime, category, note],
-    queryFn: () => makeAppointment(name, phone, appointmentTime, requestTime, category, note),
-  });
-}
+export const useMakeAppointment = () => {
+  return useMutation<TTemplateResponse<TAppointmentRequest>, Error, TMakeAppointmentRequest>({
+    mutationFn: (data: TMakeAppointmentRequest) => makeAppointment(data),
+    mutationKey: postAppointmentKey.appointment,
+    onSuccess: () => {
+      message.success('Create appointment successfully');
+    },
+
+    onError: () => {
+      message.error('Create appointment failed');
+    },
+  }
+
+  );
+};
+
+
 
 export const useGetCategories = () => {
   return useQuery<TTemplateResponse<TListResponse<TCategory[]>>, Error>({

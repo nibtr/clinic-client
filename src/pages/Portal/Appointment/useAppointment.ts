@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { Form } from 'antd';
 import { Moment } from 'moment';
 import { useMakeAppointment, useGetCategories } from '@/services/customer/services';
+// import { DATE_FORMAT } from '../../../constants/format';
 
 type FormValues = {
-    name: string;
+    patient_name: string;
     prefix: string;
-    phone: string;
-    date_of_appointment: Moment | null;
-    time_of_appointment: Moment | null;
+    patient_phone: string;
+    appointment_time: Moment | null;
     category: string;
     note: string;
 }
@@ -24,6 +24,7 @@ type TCategory = {
 const useAppointment = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [form] = Form.useForm();
+    const mutationPostAppointment = useMakeAppointment();
 
     // Show modal
     const showModal = () => {
@@ -36,20 +37,6 @@ const useAppointment = () => {
         form.resetFields();
     };
 
-    // Convert Date.now() to YYYY-MM-DD HH:mm:ss:SSS
-    function getCurrentTime() {
-        const date = new Date();
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const seconds = String(date.getSeconds()).padStart(2, '0');
-        const milliseconds = String(date.getMilliseconds()).padStart(3, '0');
-
-        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}:${milliseconds}`;
-    }
-
     // Kiểm tra số nguyên
     const integerParser = (value: any) => {
         const parsedValue = parseInt(value, 10);
@@ -61,16 +48,17 @@ const useAppointment = () => {
 
     // Submit form
     const onFinish = (values: FormValues) => {
-        const timeAppointment: string = values.date_of_appointment?.format('YYYY-MM-DD HH:mm:ss:SSS') || '';
+        const timeAppointment: string = values.appointment_time?.format('YYYY-MM-DD HH:mm:ss:SSS') || ''; // này chưa merge nên k có biến DATE_FORMAT
         let data = {
-            name: values['name'],
-            phone: '0' + values['phone'],
-            appointment_time: timeAppointment,
-            request_time: getCurrentTime(),
-            category: values['category'],
+            patientName: values['patient_name'],
+            patientPhone: '0' + values['patient_phone'],
+            appointmentTime: timeAppointment,
+            requestTime: new Date().toISOString(),
+            categoryName: values['category'],
             note: values['note'],
         }
-        // useMakeAppointment(data.name, data.phone, data.appointment_time, data.request_time, data.category, data.note);
+        
+        mutationPostAppointment.mutate(data);
         console.log('Form values:', data);
         handleCancel();
     };
