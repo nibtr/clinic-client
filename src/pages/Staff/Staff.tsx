@@ -1,12 +1,14 @@
 import CustomLayout from '@/components/CustomLayout';
 import {
-  STAFF_APPOINTMENT_LINK,
   STAFF_APPOINTMENT_REQUEST_LINK,
   STAFF_DENTIST_LINK,
+  STAFF_EXAMINATION_LINK,
   STAFF_PATIENT_LINK,
   STAFF_ROOM_LINK,
+  STAFF_TREATMENT_SESSION_LINK,
 } from '@/constants/internalLink';
 import { Access, Link, Outlet, useAccess } from '@umijs/max';
+import { BiSolidInjection } from 'react-icons/bi';
 import { FaCalendarCheck, FaCalendarPlus, FaUserNurse } from 'react-icons/fa';
 import { MdMeetingRoom, MdSick } from 'react-icons/md';
 
@@ -14,14 +16,19 @@ import NoFoundPage from '../404';
 
 const menuItems: TMenuItem[] = [
   {
-    key: STAFF_APPOINTMENT_LINK,
+    key: STAFF_EXAMINATION_LINK,
     icon: <FaCalendarCheck />,
-    label: <Link to={STAFF_APPOINTMENT_LINK}>Appointment</Link>,
+    label: <Link to={STAFF_EXAMINATION_LINK}>Examination</Link>,
   },
   {
     key: STAFF_APPOINTMENT_REQUEST_LINK,
     icon: <FaCalendarPlus />,
     label: <Link to={STAFF_APPOINTMENT_REQUEST_LINK}>Appoint. request</Link>,
+  },
+  {
+    key: STAFF_TREATMENT_SESSION_LINK,
+    icon: <BiSolidInjection />,
+    label: <Link to={STAFF_TREATMENT_SESSION_LINK}>Treatment session</Link>,
   },
   {
     key: STAFF_DENTIST_LINK,

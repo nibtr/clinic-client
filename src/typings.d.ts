@@ -42,6 +42,18 @@ type TPersonnel = {
   type: string;
 };
 
+type TPatient = {
+  id: number;
+  nationalID: string;
+  name: string;
+  dob: string | null;
+  gender: string | null;
+  phone: string;
+  drugContraindication: string;
+  oralHealthStatus: string;
+  allergyStatus: string;
+};
+
 type TAppointmentRequest = {
   id: number;
   appointmentTime: string;
@@ -61,10 +73,10 @@ type TLoginResponse = {
   token: string;
   user: TCurrentUser;
 };
-
-type TLoginResponse = {
-  token: string;
-  user: TCurrentUser;
+type TRoom = {
+  id: number;
+  code: string;
+  name: string;
 };
 
 type TMakeAppointmentRequest = {
@@ -81,4 +93,31 @@ type TCategory = {
   code: string;
   name: string;
   description: string | null;
+};
+
+type TExaminationPost = {
+  time: string;
+  patientID: number;
+  dentistID: number;
+  assistantID?: number;
+  roomID: number;
+  note?: string;
+};
+
+type TSession = {
+  id: number;
+  status?: string;
+  type: string;
+  time: string;
+  patientID: number;
+  dentistID: number;
+  assistantID?: number;
+  roomID: number;
+  note?: string;
+};
+
+type TReExamination = {
+  id: number;
+  relatedExaminationID: number;
+  Session: TSession;
 };

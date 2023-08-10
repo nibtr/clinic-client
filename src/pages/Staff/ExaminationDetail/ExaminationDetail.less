@@ -1,0 +1,40 @@
+.staff-examination-detail-wrapper {
+  .field-info {
+    align-items: start;
+    justify-content: start;
+    margin-bottom: 8px;
+    .label {
+      width: 30%;
+      margin-right: 4px;
+      font-weight: bold;
+    }
+
+    .value {
+      width: 70%;
+      text-align: justify;
+    }
+  }
+
+  .header-reEx-list {
+    margin-bottom: 12px;
+    .bold {
+      font-weight: bold;
+    }
+  }
+
+  .wrap-reEx-list {
+    max-height: 400px;
+    overflow-y: overlay;
+    .reEx-item {
+      margin-bottom: 8px;
+      padding: 4px;
+      border-bottom: 1px solid @neutral-3;
+      border-radius: 4px;
+      &:hover {
+        border-color: transparent;
+        box-shadow: 2px 2px 4px 0 @neutral-4;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -21,12 +21,12 @@ export default [
         component: './Dentist',
         routes: [
           {
-            path: '/dentist/appointment',
-            component: './Dentist/Appointment',
+            path: '/dentist/examination',
+            component: './Dentist/Examination',
           },
           {
             path: '/dentist',
-            redirect: '/dentist/appointment',
+            redirect: '/dentist/examination',
           },
         ],
       },
@@ -36,12 +36,38 @@ export default [
         component: './Staff',
         routes: [
           {
-            path: '/staff/appointment',
-            component: './Staff/Appointment',
+            path: '/staff/examination',
+            routes: [
+              {
+                path: '/staff/examination',
+                component: './Staff/Examination',
+              },
+              {
+                path: '/staff/examination/add',
+                component: './Staff/AddExamination',
+              },
+              {
+                path: '/staff/examination/:id',
+                component: './Staff/ExaminationDetail',
+              },
+            ],
           },
           {
             path: '/staff/appointment-request',
             component: './Staff/AppointmentRequest',
+          },
+          {
+            path: '/staff/treatment-session',
+            routes: [
+              {
+                path: '/staff/treatment-session',
+                component: './Staff/TreatmentSession',
+              },
+              {
+                path: '/staff/treatment-session/:id',
+                component: './Staff/TreatmentSessionDetail',
+              },
+            ],
           },
           {
             path: '/staff/room',
@@ -66,7 +92,7 @@ export default [
           },
           {
             path: '/staff',
-            redirect: '/staff/appointment',
+            redirect: '/staff/examination',
           },
         ],
       },

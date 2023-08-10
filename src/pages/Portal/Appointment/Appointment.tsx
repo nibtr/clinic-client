@@ -25,7 +25,7 @@ function Appoinment() {
             <Button className='btn-new-appointment' icon={<SendOutlined className='icon-new-appointment' />} type="primary" onClick={showModal}>
             </Button>
             <Modal
-                closeIcon={true}
+                closable={false}
                 open={isModalOpen}
                 footer={null}
             >
