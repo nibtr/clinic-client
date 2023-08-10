@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form } from 'antd';
 import { Moment } from 'moment';
 import { useMakeAppointment, useGetCategories } from '@/services/customer/services';
-// import { DATE_FORMAT } from '../../../constants/format';
+import { DATE_FORMAT } from '../../../constants/format';
 
 type FormValues = {
     patient_name: string;
@@ -48,7 +48,7 @@ const useAppointment = () => {
 
     // Submit form
     const onFinish = (values: FormValues) => {
-        const timeAppointment: string = values.appointment_time?.format('YYYY-MM-DD HH:mm:ss:SSS') || ''; // này chưa merge nên k có biến DATE_FORMAT
+        const timeAppointment: string = values.appointment_time?.format(DATE_FORMAT) || ''; 
         let data = {
             patientName: values['patient_name'],
             patientPhone: '0' + values['patient_phone'],
@@ -57,7 +57,7 @@ const useAppointment = () => {
             categoryName: values['category'],
             note: values['note'],
         }
-        
+
         mutationPostAppointment.mutate(data);
         console.log('Form values:', data);
         handleCancel();
@@ -67,8 +67,6 @@ const useAppointment = () => {
     // get categories
     const { data, isLoading } = useGetCategories();
     const categories: TCategory[] = data?.data.list || [];
-
-
 
     return ({
         onFinish,
