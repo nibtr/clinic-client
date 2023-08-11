@@ -79,6 +79,22 @@ type TRoom = {
   name: string;
 };
 
+type TMakeAppointmentRequest = {
+  patientName: string;
+  patientPhone: string;
+  appointmentTime: string;
+  requestTime: string;
+  categoryName: string;
+  note: string | null;
+};
+
+type TCategory = {
+  id: number;
+  code: string;
+  name: string;
+  description: string | null;
+};
+
 type TExaminationPost = {
   time: string;
   patientID: number;

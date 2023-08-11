@@ -1,19 +1,30 @@
 import { useState } from 'react';
-import { Form, Input, Button, Modal, DatePicker, TimePicker, Select, InputNumber } from 'antd';
-
+import { Form } from 'antd';
 import { Moment } from 'moment';
+import { useMakeAppointment, useGetCategories } from '@/services/customer/services';
+import { DATE_FORMAT } from '../../../constants/format';
 
-interface FormValues {
-    name: string;
+type FormValues = {
+    patient_name: string;
     prefix: string;
-    phone: string;
-    date_of_appointment: Moment | null;
-    time_of_appointment: Moment | null;
+    patient_phone: string;
+    appointment_time: Moment | null;
+    category: string;
     note: string;
 }
+
+type TCategory = {
+    id: number;
+    code: string;
+    name: string;
+    description: string | null;
+};
+
+
 const useAppointment = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [form] = Form.useForm();
+    const mutationPostAppointment = useMakeAppointment();
 
     // Show modal
     const showModal = () => {
@@ -26,36 +37,6 @@ const useAppointment = () => {
         form.resetFields();
     };
 
-    // Convert Date.now() to YYYY-MM-DD HH:mm:ss:SSS
-    function getCurrentTime() {
-        const date = new Date();
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const seconds = String(date.getSeconds()).padStart(2, '0');
-        const milliseconds = String(date.getMilliseconds()).padStart(3, '0');
-
-        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}:${milliseconds}`;
-    }
-
-
-    // Submit form
-    const onFinish = (values: FormValues) => {
-        const phoneData: string = '0' + values['phone'];
-        const timeAppointment: string = values.date_of_appointment?.format('YYYY-MM-DD HH:mm:ss:SSS') || '';
-        let data = {
-            name: values['name'],
-            phone: phoneData,
-            note: values['note'],
-            appointment_time: timeAppointment,
-            request_time: getCurrentTime(),
-        }
-        console.log('Form values:', data);
-        handleCancel();
-    };
-
     // Kiểm tra số nguyên
     const integerParser = (value: any) => {
         const parsedValue = parseInt(value, 10);
@@ -65,7 +46,27 @@ const useAppointment = () => {
         return parsedValue;
     };
 
+    // Submit form
+    const onFinish = (values: FormValues) => {
+        const timeAppointment: string = values.appointment_time?.format(DATE_FORMAT) || ''; 
+        let data = {
+            patientName: values['patient_name'],
+            patientPhone: '0' + values['patient_phone'],
+            appointmentTime: timeAppointment,
+            requestTime: new Date().toISOString(),
+            categoryName: values['category'],
+            note: values['note'],
+        }
 
+        mutationPostAppointment.mutate(data);
+        console.log('Form values:', data);
+        handleCancel();
+    };
+
+
+    // get categories
+    const { data, isLoading } = useGetCategories();
+    const categories: TCategory[] = data?.data.list || [];
 
     return ({
         onFinish,
@@ -74,6 +75,8 @@ const useAppointment = () => {
         handleCancel,
         showModal,
         integerParser,
+        categories,
+        isLoading,
     })
 }
 

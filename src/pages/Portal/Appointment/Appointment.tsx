@@ -1,11 +1,11 @@
-import { Form, Input, Button, Modal, DatePicker, TimePicker, Select, InputNumber } from 'antd';
+import { Form, Input, Button, Modal, DatePicker, Select, InputNumber } from 'antd';
 import './Appointment.less';
 import { SendOutlined, UserOutlined } from '@ant-design/icons';
 import useAppointment from './useAppointment';
 
 
 function Appoinment() {
-    const { isModalOpen, showModal, handleCancel, form, onFinish, integerParser } = useAppointment();
+    const { isModalOpen, showModal, handleCancel, form, onFinish, integerParser, categories } = useAppointment();
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
             <Select
@@ -15,9 +15,6 @@ function Appoinment() {
                 defaultValue="0"
             >
                 <Select.Option value="0">+84</Select.Option>
-                {/* <Select.Option value="+82">+82</Select.Option>      // Korea
-                <Select.Option value="+86">+86</Select.Option>      // China
-                <Select.Option value="+886">+886</Select.Option>    // Taiwan */}
             </Select>
         </Form.Item>
     );
@@ -41,7 +38,7 @@ function Appoinment() {
                         <div className='form-appointment-left'>
                             <Form.Item
                                 className='form-items'
-                                name='name'
+                                name='patient_name'
                                 rules={[
                                     {
                                         required: true,
@@ -58,11 +55,11 @@ function Appoinment() {
 
                             <Form.Item
                                 className='form-items'
-                                name='phone'
+                                name='patient_phone'
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input your phone!',
+                                        message: 'Please enter your phone number 10 digits!',
                                     },
                                 ]}
                             >
@@ -73,13 +70,12 @@ function Appoinment() {
                                     min={0}
                                     max={999999999}
                                     parser={integerParser}
-
                                 />
                             </Form.Item>
 
                             <Form.Item
                                 className='form-items'
-                                name='date_of_appointment'
+                                name='appointment_time'
                                 rules={[
                                     {
                                         type: 'date',
@@ -105,6 +101,32 @@ function Appoinment() {
                                     hideDisabledOptions={true}
                                     format="YYYY-MM-DD HH:mm"
                                 />
+                            </Form.Item>
+                            <Form.Item
+                                className='form-items'
+                                name='category'
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input your category of appointment!',
+
+                                    },
+                                ]}
+                            >
+
+                                <Select
+                                    defaultValue="Type of category"
+                                >
+                                    {categories.map((category: TCategory) => {
+                                        return (
+                                            <Select.Option key={category.id} value={category.name}>
+                                                {category.name}
+                                            </Select.Option>
+                                        );
+                                    }
+                                    )}
+
+                                </Select>
                             </Form.Item>
                         </div>
 
