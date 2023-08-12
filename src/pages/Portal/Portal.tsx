@@ -1,5 +1,6 @@
 import { Col, Row } from 'antd';
 import { FacebookOutlined, InstagramOutlined, LinkedinOutlined } from '@ant-design/icons';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import Carousel from '../../components/Slider';
 import Outstandings from './Outstandings';
@@ -8,7 +9,7 @@ import Services from './Services';
 import Map from './Map';
 import logo from '@/assets/images/logo-1.png';
 import './Portal.less';
-import { QueryClient, QueryClientProvider } from 'react-query';
+
 
 const queryClient = new QueryClient();
 

@@ -13,13 +13,6 @@ type FormValues = {
     note: string;
 }
 
-type TCategory = {
-    id: number;
-    code: string;
-    name: string;
-    description: string | null;
-};
-
 
 const useAppointment = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,8 +58,8 @@ const useAppointment = () => {
 
 
     // get categories
-    const { data, isLoading } = useGetCategories();
-    const categories: TCategory[] = data?.data.list || [];
+    // const { data, isLoading } = useGetCategories();
+    // const categories: TCategory[] = data?.data.list || [];
 
     return ({
         onFinish,
@@ -75,8 +68,8 @@ const useAppointment = () => {
         handleCancel,
         showModal,
         integerParser,
-        categories,
-        isLoading,
+        // categories,
+        // isLoading,
     })
 }
 

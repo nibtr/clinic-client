@@ -25,6 +25,12 @@ type TCurrentUser = {
   role: string;
 };
 
+type TLoginRequest = {
+  username: string;
+  password: string;
+};
+
+
 type TMenuItem = Required<MenuProps>['items'][number];
 
 type TTemplateResponse<T> = {
