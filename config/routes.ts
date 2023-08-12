@@ -64,6 +64,10 @@ export default [
                 component: './Staff/TreatmentSession',
               },
               {
+                path: '/staff/treatment-session/add',
+                component: './Staff/AddTreatmentSession',
+              },
+              {
                 path: '/staff/treatment-session/:id',
                 component: './Staff/TreatmentSessionDetail',
               },

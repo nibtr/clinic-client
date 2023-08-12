@@ -2,6 +2,8 @@ import { message } from 'antd';
 import { useMutation, useQuery } from 'react-query';
 import {
   getAppointmentRequests,
+  getAssistants,
+  getCategories,
   getDentistForPatient,
   getDentists,
   getExaminationDetail,
@@ -9,8 +11,10 @@ import {
   getPatients,
   getReExaminationOfExamination,
   getRooms,
+  getTeeth,
   getTreatmentSessions,
   postExamination,
+  postTreatmentSession,
 } from './callers';
 
 export const getKeyStaff = {
@@ -23,10 +27,14 @@ export const getKeyStaff = {
   examinationDetail: ['EXAMINATION_DETAIL'],
   reExOfExamination: ['RE_EX_OF_EXAMINATION'],
   treatmentSessions: ['TREATMENT_SESSIONS'],
+  teeth: ['TEETH'],
+  categories: ['CATEGORIES'],
+  assistants: ['ASSISTANTS'],
 };
 
 export const postKeyStaff = {
   examination: getKeyStaff.examination,
+  treatmentSession: getKeyStaff.treatmentSessions,
 };
 
 export const useGetAppointmentRequests = (limit: number, page: number, today: boolean) => {
@@ -104,5 +112,40 @@ export const useGetTreatmentSession = (limit: number, page: number, today?: bool
   return useQuery<TTemplateResponse<TListResponse<ISessionResponse[]>>, Error>({
     queryKey: [...getKeyStaff.treatmentSessions, page, today],
     queryFn: () => getTreatmentSessions(limit, page, today),
+  });
+};
+
+export const useGetTeeth = () => {
+  return useQuery<TTemplateResponse<TTeeth[]>, Error>({
+    queryKey: getKeyStaff.teeth,
+    queryFn: () => getTeeth(),
+  });
+};
+
+export const useGetCategories = () => {
+  return useQuery<TTemplateResponse<TCategory[]>, Error>({
+    queryKey: getKeyStaff.categories,
+    queryFn: () => getCategories(),
+  });
+};
+
+export const useGetAssistants = (limit: number, page: number, name: string) => {
+  return useQuery<TTemplateResponse<TListResponse<TPersonnel[]>>, Error>({
+    queryKey: [...getKeyStaff.assistants, page, name],
+    queryFn: () => getAssistants(limit, page, name),
+  });
+};
+
+export const usePostTreatmentSession = () => {
+  return useMutation<TTemplateResponse<TSession>, Error, TTreatmentSessionPost>({
+    mutationFn: (data: TTreatmentSessionPost) => postTreatmentSession(data),
+    mutationKey: postKeyStaff.treatmentSession,
+    onSuccess: () => {
+      message.success('Create treatment session successfully');
+    },
+
+    onError: () => {
+      message.error('Create treatment session failed');
+    },
   });
 };
