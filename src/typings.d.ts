@@ -88,13 +88,6 @@ type TMakeAppointmentRequest = {
   note: string | null;
 };
 
-type TCategory = {
-  id: number;
-  code: string;
-  name: string;
-  description: string | null;
-};
-
 type TExaminationPost = {
   time: string;
   patientID: number;
@@ -120,4 +113,27 @@ type TReExamination = {
   id: number;
   relatedExaminationID: number;
   Session: TSession;
+};
+
+type TProcedure = {
+  id: number;
+  code: string;
+  name: string;
+  description: string;
+  fee: number;
+  categoryID: number;
+};
+
+type TTeeth = {
+  id: number;
+  name: string;
+  type: string;
+};
+
+type TCategory = {
+  id: number;
+  code: string;
+  name: string;
+  description: string | null;
+  Procedure: TProcedure[];
 };
