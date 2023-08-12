@@ -5,7 +5,7 @@ export const getKeyLogin = {
     loginRequest: ['LOGIN'],
 };
 
-export const useLogin = () => {
+export const LoginRequest = () => {
     return useMutation<TTemplateResponse<TLoginResponse>, Error, TLoginRequest>({
         mutationFn: (data: TLoginRequest) => signIn(data),
         mutationKey: getKeyLogin.loginRequest,
