@@ -5,7 +5,7 @@ import useAppointment from './useAppointment';
 
 
 function Appoinment() {
-    const { isModalOpen, showModal, handleCancel, form, onFinish, integerParser } = useAppointment();
+    const { isModalOpen, showModal, handleCancel, form, onFinish, integerParser, categories } = useAppointment();
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
             <Select
@@ -117,14 +117,14 @@ function Appoinment() {
                                 <Select
                                     defaultValue="Type of category"
                                 >
-                                    {/* {categories.map((category: TCategory) => {
+                                    {categories.map((category: TCategory) => {
                                         return (
                                             <Select.Option key={category.id} value={category.name}>
                                                 {category.name}
                                             </Select.Option>
                                         );
                                     }
-                                    )} */}
+                                    )}
 
                                 </Select>
                             </Form.Item>

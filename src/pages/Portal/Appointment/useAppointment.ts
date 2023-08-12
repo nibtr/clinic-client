@@ -58,8 +58,8 @@ const useAppointment = () => {
 
 
     // get categories
-    // const { data, isLoading } = useGetCategories();
-    // const categories: TCategory[] = data?.data.list || [];
+    const { data, isLoading } = useGetCategories();
+    const categories: TCategory[] = data?.data || [];
 
     return ({
         onFinish,
@@ -68,8 +68,8 @@ const useAppointment = () => {
         handleCancel,
         showModal,
         integerParser,
-        // categories,
-        // isLoading,
+        categories,
+        isLoading,
     })
 }
 

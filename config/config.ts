@@ -13,7 +13,7 @@ export default defineConfig({
   hash: true,
   routes,
   define: {
-    HOST_NAME: 'http://localhost:3000',
+    HOST_NAME: 'https://d087-2001-ee0-4f83-bdf0-a1fd-739d-f448-63b.ngrok-free.app',
   },
   theme: {
     ...colors,

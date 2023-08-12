@@ -3,12 +3,9 @@ import { useQuery, useMutation } from 'react-query';
 import { makeAppointment, getCategories } from './callers';
 
 
-export const getAppointmentKey = {
-  appointment: ['MAKE_APPOINTMENT'],
-};
 
 export const postAppointmentKey = {
-  appointment: getAppointmentKey.appointment,
+  appointment: ['MAKE_APPOINTMENT'],
 };
 
 export const getCategoriesKey = {
@@ -32,10 +29,9 @@ export const useMakeAppointment = () => {
 };
 
 
-
 export const useGetCategories = () => {
-  return useQuery<TTemplateResponse<TListResponse<TCategory[]>>, Error>({
-    queryKey: [...getCategoriesKey.categories],
+  return useQuery<TTemplateResponse<TCategory[]>, Error>({
+    queryKey: getCategoriesKey.categories,   
     queryFn: () => getCategories(),
   });
 }
