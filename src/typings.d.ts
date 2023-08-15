@@ -20,10 +20,6 @@ declare module 'bizcharts-plugin-slider';
 declare const REACT_APP_ENV: 'test' | 'dev' | 'pre' | false;
 declare const HOST_NAME: string;
 
-type TCurrentUser = {
-  username: string;
-  role: string;
-};
 
 type TLoginRequest = {
   username: string;
@@ -77,8 +73,10 @@ type TListResponse<T> = {
 
 type TLoginResponse = {
   token: string;
-  user: TCurrentUser;
+  username: string;
+  type: string;
 };
+
 type TRoom = {
   id: number;
   code: string;

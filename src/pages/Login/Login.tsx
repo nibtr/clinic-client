@@ -1,15 +1,13 @@
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import logo from '../../../src/assets/images/logo-1.png';
+import ClientProviderLayout from '../../components/ClientProvider';
 import './Login.less';
 import useLogin from './useLogin';
 
 
-const queryClient = new QueryClient();
-
-function LoginRequest() {
-  const { onFinish } = useLogin();
+function LoginUI() {
+  const { onFinish, isLoading } = useLogin();
   return (
     <main className='login-wrapper'>
       <div className="login_page">
@@ -55,7 +53,7 @@ function LoginRequest() {
                   },
                 ]}
               >
-                <Input
+                <Input.Password
                   prefix={<LockOutlined className="site-form-item-icon" />}
                   type="password"
                   autoComplete="on"
@@ -64,20 +62,19 @@ function LoginRequest() {
               </Form.Item>
 
               <Form.Item>
-                <Form.Item name="remember" valuePropName="checked" noStyle>
+                <Form.Item valuePropName="checked" noStyle>
                   <Checkbox className='check-title'>Remember me</Checkbox>
                 </Form.Item>
 
-                <a className="login-form-forgot" href="">
+                <a className="login-form-forgot" href="#">
                   Forgot password
                 </a>
               </Form.Item>
 
               <Form.Item>
-                <Button type="primary" htmlType="submit" className="login-form-button">
+                <Button type="primary" htmlType="submit" loading={isLoading} className="login-form-button">
                   Log in
                 </Button>
-                <div>Or <a href="">register now!</a></div>
               </Form.Item>
             </Form>
 
@@ -90,9 +87,9 @@ function LoginRequest() {
 
 function Login() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <LoginRequest />
-    </QueryClientProvider>
+    <ClientProviderLayout>
+      <LoginUI />
+    </ClientProviderLayout>
   );
 }
 

@@ -5,17 +5,17 @@ import { makeAppointment, getCategories } from './callers';
 
 
 export const postAppointmentKey = {
-  appointment: ['MAKE_APPOINTMENT'],
+  appointmentRequest: ['APPOINTMENT_REQUEST'],
 };
 
 export const getCategoriesKey = {
-  categories: ['GET_CATEGORIES'],
+  categories: ['CATEGORIES'],
 };
 
 export const useMakeAppointment = () => {
   return useMutation<TTemplateResponse<TAppointmentRequest>, Error, TMakeAppointmentRequest>({
     mutationFn: (data: TMakeAppointmentRequest) => makeAppointment(data),
-    mutationKey: postAppointmentKey.appointment,
+    mutationKey: postAppointmentKey.appointmentRequest,
     onSuccess: () => {
       message.success('Create appointment successfully');
     },
