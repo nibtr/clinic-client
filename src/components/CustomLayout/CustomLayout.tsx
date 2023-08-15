@@ -3,7 +3,7 @@ import ToothIcon from '@/assets/svg/ToothIcon';
 import { LOGIN_LINK } from '@/constants/internalLink';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Link, useLocation, useModel } from '@umijs/max';
-import { Card, Layout, Menu, Typography } from 'antd';
+import { Card, Col, Layout, Menu, Row, Typography } from 'antd';
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import './CustomLayout.less';
@@ -61,7 +61,11 @@ function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
 
           <Layout>
             <Content className="content-wrapper">
-              <Card className="card-wrapper">{children}</Card>
+              <Row justify="center">
+                <Col flex="1400px">
+                  <Card className="card-wrapper">{children}</Card>
+                </Col>
+              </Row>
             </Content>
           </Layout>
         </Layout>

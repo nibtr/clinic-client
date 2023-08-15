@@ -7,3 +7,7 @@ export const GET_DENTIST_FOR_PATIENT = '/api/staff/dentist-for-patient';
 export const GET_EXAMINATION = '/api/staff/examinations';
 export const GET_EXAMINATION_DETAIL = '/api/staff/examinations';
 export const GET_TREATMENT_SESSIONS = '/api/staff/treatment-sessions';
+export const GET_TEETH = '/api/staff/teeth';
+export const GET_CATEGORIES = '/api/staff/categories';
+export const GET_ASSISTANTS = '/api/staff/assistants';
+export const POST_TREATMENT_SESSION = '/api/staff/treatment-session';

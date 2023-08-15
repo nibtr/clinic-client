@@ -18,3 +18,31 @@ interface ISessionResponse extends TSession {
   Assistant?: TPersonnel;
   Room: TRoom;
 }
+
+type TTreatmentSessionPost = {
+  dentistID: number;
+  patientID: number;
+  assistantID?: number;
+  roomID: number;
+  time: string;
+  teeth: {
+    toothID: number;
+    order: number;
+  }[];
+  note?: string;
+  healthNote?: string;
+  description?: string;
+  categoryID: number;
+};
+
+type TTreatmentSessionDetail = {
+  id: number;
+  healthNote: string;
+  description: string;
+  categoryID: number;
+  Session: TSession;
+  Category: TCategory;
+  Prescription: TPrescription[];
+  ToothSession: TToothSession[];
+  PaymentRecord: TPaymentRecord[];
+};
