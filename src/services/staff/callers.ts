@@ -139,3 +139,9 @@ export const postTreatmentSession = async (data: TTreatmentSessionPost) => {
     data,
   });
 };
+
+export const getTreatmentSessionDetail = async (id: number) => {
+  return request(GET_TREATMENT_SESSIONS + '/' + id, {
+    method: 'GET',
+  });
+};

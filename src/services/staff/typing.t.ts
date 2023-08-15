@@ -34,3 +34,15 @@ type TTreatmentSessionPost = {
   description?: string;
   categoryID: number;
 };
+
+type TTreatmentSessionDetail = {
+  id: number;
+  healthNote: string;
+  description: string;
+  categoryID: number;
+  Session: TSession;
+  Category: TCategory;
+  Prescription: TPrescription[];
+  ToothSession: TToothSession[];
+  PaymentRecord: TPaymentRecord[];
+};
