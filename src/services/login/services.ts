@@ -14,6 +14,7 @@ export const LoginRequest = () => {
             localStorage.setItem('token', data.data.token);
             localStorage.setItem('username', data.data.username);
             localStorage.setItem('type', data.data.type);
+            window.location.reload();
         },
         onError: (error) => {
             message.error(error.message);

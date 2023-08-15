@@ -5,13 +5,6 @@ import { createBrowserHistory } from 'history';
 const history = createBrowserHistory();
 
 export async function getInitialState() {
-  // const token = getKey(keyLocalStorage.TOKEN);
-  // let role: string = STAFF_ROLE;
-  // let username: string = 'namhoai';
-  // if (token) {
-  //   role = getKey(keyLocalStorage.ROLE) as string;
-  //   currentUser.username = getKey(keyLocalStorage.USERNAME);
-  // }
 
   const token = localStorage.getItem('token');
   let role, username;
@@ -22,13 +15,13 @@ export async function getInitialState() {
 
     if (role === 'ADM') {
       role = ADMIN_ROLE;
-      history.push('/admin');
+      history.push('/' + ADMIN_ROLE);
     } else if (role === 'DEN') {
       role = DENTIST_ROLE;
-      history.push('/dentist');
+      history.push('/' + DENTIST_ROLE);
     } else {
       role = STAFF_ROLE;
-      history.push('/staff');
+      history.push('/' + STAFF_ROLE);
     }
   }
 
