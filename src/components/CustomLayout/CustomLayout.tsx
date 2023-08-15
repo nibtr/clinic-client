@@ -61,7 +61,7 @@ function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
 
           <Layout>
             <Content className="content-wrapper">
-              <Row justify="center" className="max-height">
+              <Row justify="center">
                 <Col flex="1400px">
                   <Card className="card-wrapper">{children}</Card>
                 </Col>

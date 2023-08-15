@@ -12,6 +12,7 @@ import {
   getReExaminationOfExamination,
   getRooms,
   getTeeth,
+  getTreatmentSessionDetail,
   getTreatmentSessions,
   postExamination,
   postTreatmentSession,
@@ -27,6 +28,7 @@ export const getKeyStaff = {
   examinationDetail: ['EXAMINATION_DETAIL'],
   reExOfExamination: ['RE_EX_OF_EXAMINATION'],
   treatmentSessions: ['TREATMENT_SESSIONS'],
+  treatmentSession: ['TREATMENT_SESSION'],
   teeth: ['TEETH'],
   categories: ['CATEGORIES'],
   assistants: ['ASSISTANTS'],
@@ -116,7 +118,7 @@ export const useGetTreatmentSession = (limit: number, page: number, today?: bool
 };
 
 export const useGetTeeth = () => {
-  return useQuery<TTemplateResponse<TTeeth[]>, Error>({
+  return useQuery<TTemplateResponse<TTooth[]>, Error>({
     queryKey: getKeyStaff.teeth,
     queryFn: () => getTeeth(),
   });
@@ -147,5 +149,13 @@ export const usePostTreatmentSession = () => {
     onError: () => {
       message.error('Create treatment session failed');
     },
+  });
+};
+
+export const useGetTreatmentSessionDetail = (id: number) => {
+  return useQuery<TTemplateResponse<TTreatmentSessionDetail>, Error>({
+    queryKey: [...getKeyStaff.treatmentSession, id],
+    queryFn: () => getTreatmentSessionDetail(id),
+    retry: false,
   });
 };
