@@ -107,6 +107,10 @@ type TSession = {
   assistantID?: number;
   roomID: number;
   note?: string;
+  Patient: TPatient;
+  Dentist: TPersonnel;
+  Assistant?: TPersonnel;
+  Room: TRoom;
 };
 
 type TReExamination = {
@@ -124,7 +128,7 @@ type TProcedure = {
   categoryID: number;
 };
 
-type TTeeth = {
+type TTooth = {
   id: number;
   name: string;
   type: string;
@@ -136,4 +140,37 @@ type TCategory = {
   name: string;
   description: string | null;
   Procedure: TProcedure[];
+};
+
+type TDrug = {
+  id: number;
+  code: string;
+  name: string;
+  description: string;
+  price: number;
+};
+
+type TPrescription = {
+  drugID: number;
+  treatmentSessionID: number;
+  note: string;
+  Drug: TDrug;
+};
+
+type TToothSession = {
+  toothID: number;
+  treatmentSessionID: number;
+  order: number;
+  Tooth: TTooth;
+};
+
+type TPaymentRecord = {
+  id: number;
+  date: string;
+  total: number;
+  paid: number;
+  change: number;
+  method: string;
+  patientID: number;
+  treatmentSessionID: number;
 };

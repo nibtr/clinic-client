@@ -24,12 +24,12 @@ import useAddTreatmentSession from './useAddTreatmentSession';
 
 interface IToothItem {
   id: number;
-  teeth: TTeeth[];
+  teeth: TTooth[];
   removeTooth: () => void;
   disableDelete: boolean;
 }
 
-const getOptions = (teeth: TTeeth[]) => {
+const getOptions = (teeth: TTooth[]) => {
   return teeth.map((tooth) => {
     return {
       label: tooth.name + ' - ' + tooth.type,
