@@ -1,3 +1,3 @@
-export const ADMIN_ROLE = 'admin';
-export const STAFF_ROLE = 'staff';
-export const DENTIST_ROLE = 'dentist';
+export const ADMIN_ROLE = 'ADM';
+export const STAFF_ROLE = 'STA';
+export const DENTIST_ROLE = 'DEN';
