@@ -1,28 +1,32 @@
-import { STAFF_ROLE, ADMIN_ROLE, DENTIST_ROLE } from './constants/auth';
+import { history } from '@umijs/max';
+import { ADMIN_ROLE, DENTIST_ROLE, STAFF_ROLE } from './constants/auth';
+import { ADMIN_LINK, DENTIST_LINK, LOGIN_LINK, STAFF_LINK } from './constants/internalLink';
 import { errorConfig } from './requestErrorConfig';
-import { createBrowserHistory } from 'history';
-
-const history = createBrowserHistory();
+import { getKey, keyLocalStorage } from './utils/localStorage';
 
 export async function getInitialState() {
-
-  const token = localStorage.getItem('token');
+  const token = getKey(keyLocalStorage.TOKEN);
   let role, username;
 
   if (token) {
-    role = localStorage.getItem('type');
-    username = localStorage.getItem('username');
-
-    if (role === 'ADM') {
-      role = ADMIN_ROLE;
-      history.push('/' + ADMIN_ROLE);
-    } else if (role === 'DEN') {
-      role = DENTIST_ROLE;
-      history.push('/' + DENTIST_ROLE);
-    } else {
-      role = STAFF_ROLE;
-      history.push('/' + STAFF_ROLE);
+    role = getKey(keyLocalStorage.ROLE);
+    username = getKey(keyLocalStorage.USERNAME);
+    switch (role) {
+      case ADMIN_ROLE:
+        history.push(ADMIN_LINK);
+        break;
+      case DENTIST_ROLE:
+        history.push(DENTIST_LINK);
+        break;
+      case STAFF_ROLE:
+        history.push(STAFF_LINK);
+        break;
+      default:
+        history.push(LOGIN_LINK);
+        break;
     }
+  } else {
+    history.push(LOGIN_LINK);
   }
 
   return {
