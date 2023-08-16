@@ -62,16 +62,6 @@ function LoginUI() {
               </Form.Item>
 
               <Form.Item>
-                <Form.Item valuePropName="checked" noStyle>
-                  <Checkbox className='check-title'>Remember me</Checkbox>
-                </Form.Item>
-
-                <a className="login-form-forgot" href="#">
-                  Forgot password
-                </a>
-              </Form.Item>
-
-              <Form.Item>
                 <Button type="primary" htmlType="submit" loading={isLoading} className="login-form-button">
                   Log in
                 </Button>

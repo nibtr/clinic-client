@@ -1,12 +1,12 @@
 import LogOutIcon from '@/assets/svg/LogOutIcon';
 import ToothIcon from '@/assets/svg/ToothIcon';
-import { LOGIN_LINK } from '@/constants/internalLink';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { Link, useLocation, useModel } from '@umijs/max';
+import { useLocation, useModel } from '@umijs/max';
 import { Card, Col, Layout, Menu, Row, Typography } from 'antd';
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import './CustomLayout.less';
+import { removeKey } from '@/utils/localStorage';
 
 interface ICustomLayoutProps {
   children: React.ReactNode;
@@ -18,9 +18,10 @@ const queryClient = new QueryClient();
 const { Sider, Content } = Layout;
 
 const handleLogOut = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('username');
-  localStorage.removeItem('type');
+  removeKey('token');
+  removeKey('username');
+  removeKey('role');
+  window.location.reload();
 }
 
 function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
@@ -57,12 +58,12 @@ function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
               </button>
             </div>
             <Menu mode="inline" defaultSelectedKeys={[defaultKey]} items={menuItems} />
-            <Link to={LOGIN_LINK} replace className="flex-center log-out-btn">
+            <div className="flex-center log-out-btn" onClick={handleLogOut}>
               <LogOutIcon width={20} height={20} />
               <div className={`trans-effect text-trans ${collapsed ? 'collapsed' : ''}`}>
-                <span className="log-out-text" onClick={handleLogOut}>Log Out</span>
+                <span className="log-out-text">Log Out</span>
               </div>
-            </Link>
+            </div>
           </Sider>
 
           <Layout>
