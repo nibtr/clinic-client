@@ -1,14 +1,24 @@
-import { useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { signIn } from './callers';
+import { message } from 'antd';
 
 export const getKeyLogin = {
     loginRequest: ['LOGIN'],
 };
 
-export const useLogin = (username: string, password: string) => {
-    return useQuery<TTemplateResponse<TLoginResponse>, Error>({
-        queryKey: [...getKeyLogin.loginRequest, username, password],
-        queryFn: () => signIn(username, password),
+export const LoginRequest = () => {
+    return useMutation<TTemplateResponse<TLoginResponse>, Error, TLoginRequest>({
+        mutationFn: (data: TLoginRequest) => signIn(data),
+        mutationKey: getKeyLogin.loginRequest,
+        onSuccess: (data) => {
+            localStorage.setItem('token', data.data.token);
+            localStorage.setItem('username', data.data.username);
+            localStorage.setItem('type', data.data.type);
+            window.location.reload();
+        },
+        onError: (error) => {
+            message.error(error.message);
+        }
     });
 }
 

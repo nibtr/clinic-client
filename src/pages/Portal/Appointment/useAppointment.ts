@@ -57,8 +57,8 @@ const useAppointment = () => {
 
   // get categories
   const { data, isLoading } = useGetCategories();
-  const categories: TCategory[] = data?.data.list || [];
-
+  const categories: TCategory[] = data?.data || [];
+  console.log('data', data);
   return {
     onFinish,
     form,
