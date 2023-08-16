@@ -27,7 +27,6 @@ const useAddExamination = (form: FormInstance<any>) => {
     form.setFieldValue(formKey.dentistID, valueForm.dentistID);
     form.setFieldValue(formKey.assistantID, valueForm.assistantID);
     form.setFieldValue(formKey.roomID, valueForm.roomID);
-    // console.log(form.getFieldsValue());
     mutationPostExamination.mutate(form.getFieldsValue());
     form.resetFields();
   };
