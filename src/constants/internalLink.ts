@@ -1,4 +1,7 @@
 export const LOGIN_LINK = '/login';
+export const ADMIN_LINK = '/admin';
+export const DENTIST_LINK = '/dentist';
+export const STAFF_LINK = '/staff';
 
 export const ADMIN_STAFF_LINK = '/admin/staff';
 export const ADMIN_DENTIST_LINK = '/admin/dentist';
