@@ -17,6 +17,12 @@ const queryClient = new QueryClient();
 
 const { Sider, Content } = Layout;
 
+const handleLogOut = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('username');
+  localStorage.removeItem('type');
+}
+
 function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
   const [collapsed, setCollapsed] = useState(false);
   const { initialState } = useModel('@@initialState');
@@ -54,7 +60,7 @@ function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
             <Link to={LOGIN_LINK} replace className="flex-center log-out-btn">
               <LogOutIcon width={20} height={20} />
               <div className={`trans-effect text-trans ${collapsed ? 'collapsed' : ''}`}>
-                <span className="log-out-text">Log Out</span>
+                <span className="log-out-text" onClick={handleLogOut}>Log Out</span>
               </div>
             </Link>
           </Sider>

@@ -18,7 +18,7 @@ function Patient() {
           fields={['Name', 'DoB', 'Gender', 'Phone', 'National ID']}
         />
         <Link to={STAFF_ADD_PATIENT} className="add-btn">
-          <AddButton>New Dentist</AddButton>
+          <AddButton>New Patient</AddButton>
         </Link>
       </header>
       

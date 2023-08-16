@@ -11,9 +11,7 @@ type TData = {
 };
 
 const getData = (page: number): TData => {
-    //   const [name, setName] = useState<string>('');
     const { data, isLoading } = useGetPatients(LIMIT_PER_PAGE, page - 1, '');
-    console.log('data', data);
     return {
         listPatient: data?.data.list || [],
         total: data?.data.total || 0,

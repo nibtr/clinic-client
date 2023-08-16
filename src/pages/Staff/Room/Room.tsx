@@ -1,8 +1,6 @@
 import RoomItem from '@/components/RoomItem';
 import { Col, Empty, Row, Spin } from 'antd';
 import useRoom from './useRoom';
-import { Fragment } from 'react';
-import ListItem from '@/components/ListItem';
 
 const renderList = (listRoom: TRoom[]) => {
   if (listRoom.length === 0) {
@@ -10,7 +8,7 @@ const renderList = (listRoom: TRoom[]) => {
   }
 
   return (
-    <Row gutter={[16, 16]}>
+    <Row gutter={[16, 16]} justify="start">
       {listRoom.map((room: TRoom) => {
         const fields: string[] = [];
         fields.push(room.code);
@@ -42,7 +40,6 @@ function Room() {
       ) : (
         renderList(listRoom)
       )}
-
     </main>
   );
 }
