@@ -5,8 +5,8 @@ import { useLocation, useModel } from '@umijs/max';
 import { Card, Col, Layout, Menu, Row, Typography } from 'antd';
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { keyLocalStorage, removeKey } from '@/utils/localStorage';
 import './CustomLayout.less';
-import { removeKey } from '@/utils/localStorage';
 
 interface ICustomLayoutProps {
   children: React.ReactNode;
@@ -18,9 +18,9 @@ const queryClient = new QueryClient();
 const { Sider, Content } = Layout;
 
 const handleLogOut = () => {
-  removeKey('token');
-  removeKey('username');
-  removeKey('role');
+  removeKey(keyLocalStorage.TOKEN);
+  removeKey(keyLocalStorage.USERNAME);
+  removeKey(keyLocalStorage.ROLE);
   window.location.reload();
 }
 
@@ -39,9 +39,8 @@ function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
             <div className="logo flex-center">
               <ToothIcon width={32} height={32} />
               <div
-                className={`trans-effect text-trans wrap-logo-header ${
-                  collapsed ? 'collapsed' : ''
-                }`}
+                className={`trans-effect text-trans wrap-logo-header ${collapsed ? 'collapsed' : ''
+                  }`}
               >
                 <Typography.Paragraph ellipsis={{ rows: 1 }} className="logo-title">
                   Dental clinic
