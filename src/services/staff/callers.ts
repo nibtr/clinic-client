@@ -1,5 +1,6 @@
 import { request } from '@umijs/max';
 import {
+  DELETE_APPOINTMENT_REQUESTS,
   GET_APPOINTMENT_REQUESTS,
   GET_ASSISTANTS,
   GET_CATEGORIES,
@@ -143,5 +144,11 @@ export const postTreatmentSession = async (data: TTreatmentSessionPost) => {
 export const getTreatmentSessionDetail = async (id: number) => {
   return request(GET_TREATMENT_SESSIONS + '/' + id, {
     method: 'GET',
+  });
+};
+
+export const deleteAppointmentRequests = async (id: number) => {
+  return request(DELETE_APPOINTMENT_REQUESTS + '/' + id, {
+    method: 'DELETE',
   });
 };
