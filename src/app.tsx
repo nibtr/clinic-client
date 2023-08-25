@@ -25,9 +25,7 @@ export async function getInitialState() {
         history.push(LOGIN_LINK);
         break;
     }
-  } else {
-    history.push(LOGIN_LINK);
-  }
+  } 
 
   return {
     username,
