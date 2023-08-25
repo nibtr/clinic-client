@@ -1,10 +1,22 @@
 import { MALE_TYPE } from '@/constants/dataQuery';
+import { STAFF_TREATMENT_SESSION_LINK } from '@/constants/internalLink';
 import {
   convertSessionStatus,
   convertSessionStatusToColor,
   splitDateTime,
 } from '@/utils/convertData';
-import { Col, Collapse, CollapseProps, Divider, Empty, Row, Spin, Typography } from 'antd';
+import { Link } from '@umijs/max';
+import {
+  Breadcrumb,
+  Col,
+  Collapse,
+  CollapseProps,
+  Divider,
+  Empty,
+  Row,
+  Spin,
+  Typography,
+} from 'antd';
 import { Fragment, ReactNode } from 'react';
 import './TreatmentSessionDetail.less';
 import useTreatmentSessionDetail from './useTreatmentSessionDetail';
@@ -223,6 +235,16 @@ function TreatmentSessionDetail() {
   const { detail, isLoading } = useTreatmentSessionDetail();
   return (
     <main className="staff-treatment-session-detail">
+      <Breadcrumb
+        items={[
+          {
+            title: <Link to={STAFF_TREATMENT_SESSION_LINK}>Treatment session</Link>,
+          },
+          {
+            title: 'Detail',
+          },
+        ]}
+      />
       {isLoading ? (
         <Row justify="center">
           <Spin />

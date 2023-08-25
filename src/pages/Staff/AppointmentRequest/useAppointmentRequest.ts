@@ -1,8 +1,9 @@
 import { LIMIT_PER_PAGE } from '@/constants/dataQuery';
-import { useGetAppointmentRequests } from '@/services/staff/services';
+import { useDeleteAppointmentRequest, useGetAppointmentRequests } from '@/services/staff/services';
 import { getParams } from '@/utils/routing';
 import { useLocation, useNavigate } from '@umijs/max';
 import { useState } from 'react';
+import { useQueryClient } from 'react-query';
 
 const getData = (page: number, isToday: boolean) => {
   const { data, isLoading } = useGetAppointmentRequests(LIMIT_PER_PAGE, page - 1, isToday);
@@ -19,8 +20,10 @@ const useAppointmentRequest = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(Number(pageParam));
   const [isToday, setIsToday] = useState(false);
+  const queryClient = useQueryClient();
 
   const { list, total, isLoading } = getData(page, isToday);
+  const deleteAppointReqMutation = useDeleteAppointmentRequest(queryClient);
 
   const changePage = (page: number) => {
     setPage(page);
@@ -31,6 +34,10 @@ const useAppointmentRequest = () => {
     setIsToday(!isToday);
   };
 
+  const deleteAppointReq = (id: number) => {
+    deleteAppointReqMutation.mutate(id);
+  };
+
   return {
     list,
     total,
@@ -39,6 +46,7 @@ const useAppointmentRequest = () => {
     changePage,
     isToday,
     changeIsToday,
+    deleteAppointReq,
   };
 };
 

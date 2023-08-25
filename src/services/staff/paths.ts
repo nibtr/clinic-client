@@ -11,3 +11,4 @@ export const GET_TEETH = '/api/staff/teeth';
 export const GET_CATEGORIES = '/api/staff/categories';
 export const GET_ASSISTANTS = '/api/staff/assistants';
 export const POST_TREATMENT_SESSION = '/api/staff/treatment-session';
+export const DELETE_APPOINTMENT_REQUESTS = '/api/staff/appointment-requests';

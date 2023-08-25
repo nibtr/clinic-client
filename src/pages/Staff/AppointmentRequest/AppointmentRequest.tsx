@@ -4,7 +4,7 @@ import { Checkbox, Divider, Empty, Pagination, Row, Spin } from 'antd';
 import { Fragment } from 'react';
 import useAppointmentRequest from './useAppointmentRequest';
 
-const renderList = (list: TAppointmentRequest[]) => {
+const renderList = (list: TAppointmentRequest[], deleteAppointReq: (id: number) => void) => {
   if (list.length === 0) {
     return <Empty description="No data" />;
   }
@@ -18,14 +18,22 @@ const renderList = (list: TAppointmentRequest[]) => {
         fields.push(splitDateTime(appointmentRequest.appointmentTime));
         fields.push(splitDateTime(appointmentRequest.requestTime));
         fields.push(appointmentRequest.note || '');
-        return <ListItem key={appointmentRequest.id} fields={fields} />;
+        return (
+          <ListItem
+            key={appointmentRequest.id}
+            fields={fields}
+            onDelete={() => {
+              deleteAppointReq(appointmentRequest.id);
+            }}
+          />
+        );
       })}
     </Fragment>
   );
 };
 
 function AppointmentRequest() {
-  const { list, total, isLoading, page, isToday, changePage, changeIsToday } =
+  const { list, total, isLoading, page, isToday, changePage, changeIsToday, deleteAppointReq } =
     useAppointmentRequest();
   return (
     <main>
@@ -46,7 +54,7 @@ function AppointmentRequest() {
               today
             </Checkbox>
           </Divider>
-          {renderList(list)}
+          {renderList(list, deleteAppointReq)}
         </div>
       )}
       {!isLoading && (

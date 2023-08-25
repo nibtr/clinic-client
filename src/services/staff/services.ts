@@ -1,6 +1,7 @@
 import { message } from 'antd';
-import { useMutation, useQuery } from 'react-query';
+import { QueryClient, useMutation, useQuery } from 'react-query';
 import {
+  deleteAppointmentRequests,
   getAppointmentRequests,
   getAssistants,
   getCategories,
@@ -37,6 +38,10 @@ export const getKeyStaff = {
 export const postKeyStaff = {
   examination: getKeyStaff.examination,
   treatmentSession: getKeyStaff.treatmentSessions,
+};
+
+export const deleteKeyStaff = {
+  appointmentRequests: getKeyStaff.appointmentRequests,
 };
 
 export const useGetAppointmentRequests = (limit: number, page: number, today: boolean) => {
@@ -157,5 +162,19 @@ export const useGetTreatmentSessionDetail = (id: number) => {
     queryKey: [...getKeyStaff.treatmentSession, id],
     queryFn: () => getTreatmentSessionDetail(id),
     retry: false,
+  });
+};
+
+export const useDeleteAppointmentRequest = (queryClient: QueryClient) => {
+  return useMutation<TTemplateResponse<string>, Error, number>({
+    mutationFn: (id: number) => deleteAppointmentRequests(id),
+    mutationKey: deleteKeyStaff.appointmentRequests,
+    onSuccess: () => {
+      message.success('Delete appointment request successfully');
+      queryClient.invalidateQueries(deleteKeyStaff.appointmentRequests);
+    },
+    onError: () => {
+      message.error('Delete appointment request failed');
+    },
   });
 };
