@@ -12,7 +12,6 @@ const getData = (id: number) => {
 const useTreatmentSessionDetail = () => {
   const { id } = useParams();
   const { detail, isLoading } = getData(Number(id));
-  console.log(detail);
   return {
     detail,
     isLoading,

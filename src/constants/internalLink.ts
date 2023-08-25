@@ -21,3 +21,4 @@ export const STAFF_DENTIST_LINK = '/staff/dentist';
 export const STAFF_ADD_PATIENT = '/staff/patient/add';
 export const STAFF_TREATMENT_SESSION_LINK = '/staff/treatment-session';
 export const STAFF_ADD_TREATMENT_SESSION = '/staff/treatment-session/add';
+export const STAFF_ADD_DENTIST = '/staff/dentist/add';

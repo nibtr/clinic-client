@@ -1,19 +1,34 @@
-import { STAFF_ADD_PATIENT } from '@/constants/internalLink';
-import { PlusOutlined } from '@ant-design/icons';
 import { Link } from '@umijs/max';
-import { Button } from 'antd';
+import { STAFF_ADD_PATIENT } from '@/constants/internalLink';
+import ListItem from '@/components/ListItem';
+import PersonnelList from '@/components/PersonnelList';
+import AddButton from '@/components/AddButton';
+import usePatient from './usePatient';
+
 import './Patient.less';
 
 function Patient() {
+  const { listPatient, total, isLoading, page, changePage } = usePatient();
+
   return (
     <main className="staff-patient-wrapper">
       <header className="header">
-        <Link to={STAFF_ADD_PATIENT}>
-          <Button icon={<PlusOutlined />} type="primary" className="new-patient-btn">
-            New patient
-          </Button>
+        <ListItem
+          header
+          fields={['Name', 'DoB', 'Gender', 'Phone', 'National ID']}
+        />
+        <Link to={STAFF_ADD_PATIENT} className="add-btn">
+          <AddButton>New Patient</AddButton>
         </Link>
       </header>
+      
+      <PersonnelList
+        listPersonnel={listPatient}
+        total={total}
+        isLoading={isLoading}
+        page={page}
+        changePage={changePage}
+      />
     </main>
   );
 }

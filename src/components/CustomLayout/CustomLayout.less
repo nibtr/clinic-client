@@ -13,11 +13,16 @@
     .log-out-btn {
       position: absolute;
       bottom: 12px;
-      width: 100%;
+      width: calc(100% - 8px);
       padding: 12px 0px;
       color: @blue-2;
+      border-radius: 8px;
+      margin-inline: 4px;
+      margin-block: 4px;
+      transition: all 0.3s ease-in-out;
       &:hover {
         cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.06);
       }
       .log-out-text {
         margin-left: 8px;

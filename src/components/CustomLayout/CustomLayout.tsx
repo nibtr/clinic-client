@@ -1,11 +1,11 @@
 import LogOutIcon from '@/assets/svg/LogOutIcon';
 import ToothIcon from '@/assets/svg/ToothIcon';
-import { LOGIN_LINK } from '@/constants/internalLink';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { Link, useLocation, useModel } from '@umijs/max';
+import { useLocation, useModel } from '@umijs/max';
 import { Card, Col, Layout, Menu, Row, Typography } from 'antd';
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { keyLocalStorage, removeKey } from '@/utils/localStorage';
 import './CustomLayout.less';
 
 interface ICustomLayoutProps {
@@ -16,6 +16,13 @@ interface ICustomLayoutProps {
 const queryClient = new QueryClient();
 
 const { Sider, Content } = Layout;
+
+const handleLogOut = () => {
+  removeKey(keyLocalStorage.TOKEN);
+  removeKey(keyLocalStorage.USERNAME);
+  removeKey(keyLocalStorage.ROLE);
+  window.location.reload();
+}
 
 function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
   const [collapsed, setCollapsed] = useState(false);
@@ -32,9 +39,8 @@ function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
             <div className="logo flex-center">
               <ToothIcon width={32} height={32} />
               <div
-                className={`trans-effect text-trans wrap-logo-header ${
-                  collapsed ? 'collapsed' : ''
-                }`}
+                className={`trans-effect text-trans wrap-logo-header ${collapsed ? 'collapsed' : ''
+                  }`}
               >
                 <Typography.Paragraph ellipsis={{ rows: 1 }} className="logo-title">
                   Dental clinic
@@ -51,12 +57,12 @@ function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
               </button>
             </div>
             <Menu mode="inline" defaultSelectedKeys={[defaultKey]} items={menuItems} />
-            <Link to={LOGIN_LINK} replace className="flex-center log-out-btn">
+            <div className="flex-center log-out-btn" onClick={handleLogOut}>
               <LogOutIcon width={20} height={20} />
               <div className={`trans-effect text-trans ${collapsed ? 'collapsed' : ''}`}>
                 <span className="log-out-text">Log Out</span>
               </div>
-            </Link>
+            </div>
           </Sider>
 
           <Layout>

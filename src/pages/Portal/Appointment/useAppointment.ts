@@ -51,14 +51,12 @@ const useAppointment = () => {
     };
 
     mutationPostAppointment.mutate(data);
-    console.log('Form values:', data);
     handleCancel();
   };
 
   // get categories
   const { data, isLoading } = useGetCategories();
   const categories: TCategory[] = data?.data || [];
-  console.log('data', data);
   return {
     onFinish,
     form,
