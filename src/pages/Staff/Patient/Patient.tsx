@@ -25,6 +25,7 @@ function Patient() {
         isLoading={isLoading}
         page={page}
         changePage={changePage}
+        haveDetail
       />
     </main>
   );
