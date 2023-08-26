@@ -7,13 +7,18 @@ import './PersonnelList.less';
 
 interface IPersonnelList {
   listPersonnel: TPersonnel[];
+  haveDetail?: boolean;
   total: number;
   isLoading: boolean;
   page: number;
   changePage: (page: number) => void;
 }
 
-const renderList = (listPersonnel: TPersonnel[], navigateToDetail: (id: number) => void) => {
+const renderList = (
+  listPersonnel: TPersonnel[],
+  haveDetail: boolean,
+  navigateToDetail: (id: number) => void,
+) => {
   if (listPersonnel.length === 0) {
     return <Empty description="No data" />;
   }
@@ -32,6 +37,7 @@ const renderList = (listPersonnel: TPersonnel[], navigateToDetail: (id: number) 
             key={personnel.id}
             fields={fields}
             onClick={() => {
+              if (!haveDetail) return;
               navigateToDetail(personnel.id);
             }}
           />
@@ -40,7 +46,14 @@ const renderList = (listPersonnel: TPersonnel[], navigateToDetail: (id: number) 
     </Fragment>
   );
 };
-function PersonnelList({ listPersonnel, total, isLoading, page, changePage }: IPersonnelList) {
+function PersonnelList({
+  listPersonnel,
+  haveDetail = false,
+  total,
+  isLoading,
+  page,
+  changePage,
+}: IPersonnelList) {
   const location = useLocation();
   const navigate = useNavigate();
   const navigateToDetail = (id: number) => {
@@ -54,7 +67,7 @@ function PersonnelList({ listPersonnel, total, isLoading, page, changePage }: IP
           <Spin />
         </Row>
       ) : (
-        renderList(listPersonnel, navigateToDetail)
+        renderList(listPersonnel, haveDetail, navigateToDetail)
       )}
       {!isLoading && (
         <Row justify="end">

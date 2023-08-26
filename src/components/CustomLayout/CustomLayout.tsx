@@ -1,11 +1,12 @@
 import LogOutIcon from '@/assets/svg/LogOutIcon';
 import ToothIcon from '@/assets/svg/ToothIcon';
+import { LOGIN_LINK } from '@/constants/internalLink';
+import { keyLocalStorage, removeKey } from '@/utils/localStorage';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { useLocation, useModel } from '@umijs/max';
+import { history, useLocation, useModel } from '@umijs/max';
 import { Card, Col, Layout, Menu, Row, Typography } from 'antd';
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { keyLocalStorage, removeKey } from '@/utils/localStorage';
 import './CustomLayout.less';
 
 interface ICustomLayoutProps {
@@ -21,8 +22,8 @@ const handleLogOut = () => {
   removeKey(keyLocalStorage.TOKEN);
   removeKey(keyLocalStorage.USERNAME);
   removeKey(keyLocalStorage.ROLE);
-  window.location.reload();
-}
+  history.push(LOGIN_LINK);
+};
 
 function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
   const [collapsed, setCollapsed] = useState(false);
@@ -39,8 +40,9 @@ function CustomLayout({ children, menuItems }: ICustomLayoutProps) {
             <div className="logo flex-center">
               <ToothIcon width={32} height={32} />
               <div
-                className={`trans-effect text-trans wrap-logo-header ${collapsed ? 'collapsed' : ''
-                  }`}
+                className={`trans-effect text-trans wrap-logo-header ${
+                  collapsed ? 'collapsed' : ''
+                }`}
               >
                 <Typography.Paragraph ellipsis={{ rows: 1 }} className="logo-title">
                   Dental clinic
