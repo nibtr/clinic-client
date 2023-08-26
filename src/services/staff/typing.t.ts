@@ -44,5 +44,5 @@ type TTreatmentSessionDetail = {
   Category: TCategory;
   Prescription: TPrescription[];
   ToothSession: TToothSession[];
-  PaymentRecord: TPaymentRecord[];
+  PaymentRecord?: TPaymentRecord;
 };

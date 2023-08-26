@@ -85,6 +85,14 @@ export default [
                 component: './Staff/Patient',
               },
               {
+                path: '/staff/patient/:id',
+                component: './Staff/PatientDetail',
+              },
+              {
+                path: '/staff/patient/:patientID/treatment-session/:id',
+                component: './Staff/TreatmentSessionDetail',
+              },
+              {
                 path: '/staff/patient/add',
                 component: './Staff/AddPatient',
               },

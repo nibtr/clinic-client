@@ -2,6 +2,7 @@ import {
   useGetExaminationDetail,
   useGetReExaminationOfExamination,
 } from '@/services/staff/services';
+import { getSearching } from '@/utils/routing';
 import { useParams } from '@umijs/max';
 
 const getExaminationDetail = (id: number) => {
@@ -24,8 +25,10 @@ const useExaminationDetail = () => {
   const { id } = useParams();
   const { examination, isLoading } = getExaminationDetail(Number(id));
   const { reExList, reExListLoading } = getReExList(Number(id));
+  const searching = getSearching();
 
   return {
+    searching,
     examination,
     isLoading,
     reExList,

@@ -1,8 +1,8 @@
-import { Link } from '@umijs/max';
-import { STAFF_ADD_PATIENT } from '@/constants/internalLink';
+import AddButton from '@/components/AddButton';
 import ListItem from '@/components/ListItem';
 import PersonnelList from '@/components/PersonnelList';
-import AddButton from '@/components/AddButton';
+import { STAFF_ADD_PATIENT } from '@/constants/internalLink';
+import { Link } from '@umijs/max';
 import usePatient from './usePatient';
 
 import './Patient.less';
@@ -13,15 +13,12 @@ function Patient() {
   return (
     <main className="staff-patient-wrapper">
       <header className="header">
-        <ListItem
-          header
-          fields={['Name', 'DoB', 'Gender', 'Phone', 'National ID']}
-        />
+        <ListItem header fields={['Name', 'DoB', 'Gender', 'Phone', 'National ID']} />
         <Link to={STAFF_ADD_PATIENT} className="add-btn">
           <AddButton>New Patient</AddButton>
         </Link>
       </header>
-      
+
       <PersonnelList
         listPersonnel={listPatient}
         total={total}

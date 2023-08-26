@@ -1,11 +1,15 @@
-import { MALE_TYPE } from '@/constants/dataQuery';
-import { STAFF_TREATMENT_SESSION_LINK } from '@/constants/internalLink';
+import FieldInfo from '@/components/FieldInfo';
+import ListItem from '@/components/ListItem';
+import PersonnelInfo from '@/components/PersonnelInfo';
+import { STAFF_PATIENT_LINK, STAFF_TREATMENT_SESSION_LINK } from '@/constants/internalLink';
 import {
+  convertMethodPayment,
   convertSessionStatus,
   convertSessionStatusToColor,
   splitDateTime,
 } from '@/utils/convertData';
-import { Link } from '@umijs/max';
+import { getSearching } from '@/utils/routing';
+import { Link, useParams } from '@umijs/max';
 import {
   Breadcrumb,
   Col,
@@ -17,39 +21,9 @@ import {
   Spin,
   Typography,
 } from 'antd';
-import { Fragment, ReactNode } from 'react';
+import { Fragment } from 'react';
 import './TreatmentSessionDetail.less';
 import useTreatmentSessionDetail from './useTreatmentSessionDetail';
-
-interface IFieldInfoProps {
-  label: string;
-  value: ReactNode;
-}
-
-const FieldInfo = ({ label, value }: IFieldInfoProps) => {
-  return (
-    <div className="flex-center field-info">
-      <label className="label">{label}:</label> <span className="value">{value}</span>
-    </div>
-  );
-};
-
-const renderPersonnelInfo = (personnel: TPersonnel | TPatient) => {
-  let gender = '';
-  if (personnel.gender) {
-    gender = personnel.gender === MALE_TYPE ? 'male' : 'female';
-  }
-
-  return (
-    <section>
-      <FieldInfo label="Name" value={personnel.name} />
-      <FieldInfo label="Gender" value={gender} />
-      <FieldInfo label="National ID" value={personnel.nationalID} />
-      <FieldInfo label="Date of Birth" value={splitDateTime(personnel.dob) || ''} />
-      <FieldInfo label="Phone" value={personnel.phone} />
-    </section>
-  );
-};
 
 const renderToothSession = (toothSession: TToothSession[]) => {
   return toothSession.map((toothSession) => {
@@ -176,6 +150,29 @@ const getCollapseItem = (detail: TTreatmentSessionDetail) => {
       ),
     },
   ];
+
+  if (detail.PaymentRecord) {
+    items.push({
+      key: '5',
+      label: 'Payment Record',
+      children: (
+        <Fragment>
+          <ListItem header fields={['Date', 'Total', 'Paid', 'Change', 'Method']} />
+          <ListItem
+            notHover
+            fields={[
+              splitDateTime(detail.PaymentRecord.date),
+              detail.PaymentRecord.total.toString(),
+              detail.PaymentRecord.paid.toString(),
+              detail.PaymentRecord.change.toString(),
+              convertMethodPayment(detail.PaymentRecord.method),
+            ]}
+          />
+        </Fragment>
+      ),
+    });
+  }
+
   return items;
 };
 
@@ -184,24 +181,22 @@ const renderDetail = (detail: TTreatmentSessionDetail | undefined) => {
     return <Empty description="No data" />;
   }
 
-  console.log(detail);
-
   return (
     <Row justify="space-around">
       <Col span={8}>
         <Divider orientation="left">Patient</Divider>
-        {renderPersonnelInfo(detail.Session.Patient)}
+        <PersonnelInfo personnel={detail.Session.Patient} />
         <FieldInfo
           label="Drug Contraindication"
           value={detail.Session.Patient.drugContraindication}
         />
         <FieldInfo label="Allergy Status" value={detail.Session.Patient.allergyStatus} />
         <Divider orientation="left">Dentist</Divider>
-        {renderPersonnelInfo(detail.Session.Dentist)}
+        <PersonnelInfo personnel={detail.Session.Dentist} />
         {detail.Session.Assistant && (
           <Fragment>
             <Divider orientation="left">Assistant</Divider>
-            {renderPersonnelInfo(detail.Session.Assistant)}
+            <PersonnelInfo personnel={detail.Session.Assistant} />
           </Fragment>
         )}
       </Col>
@@ -231,20 +226,41 @@ const renderDetail = (detail: TTreatmentSessionDetail | undefined) => {
   );
 };
 
+const getBreadcrumbItems = () => {
+  const searching = getSearching();
+  return [
+    {
+      title: <Link to={STAFF_TREATMENT_SESSION_LINK + searching}>Treatment session</Link>,
+    },
+    {
+      title: 'Detail',
+    },
+  ];
+};
+
+const getBreadcrumbItemsPatient = () => {
+  const searching = getSearching();
+  const { patientID } = useParams();
+  console.log(patientID);
+
+  return [
+    {
+      title: <Link to={`${STAFF_PATIENT_LINK}${searching}`}>Patient</Link>,
+    },
+    {
+      title: <Link to={`${STAFF_PATIENT_LINK}/${patientID}${searching}`}>Detail</Link>,
+    },
+    {
+      title: 'Treatment session detail',
+    },
+  ];
+};
+
 function TreatmentSessionDetail() {
-  const { detail, isLoading } = useTreatmentSessionDetail();
+  const { detail, isLoading, isPatientRoute } = useTreatmentSessionDetail();
   return (
     <main className="staff-treatment-session-detail">
-      <Breadcrumb
-        items={[
-          {
-            title: <Link to={STAFF_TREATMENT_SESSION_LINK}>Treatment session</Link>,
-          },
-          {
-            title: 'Detail',
-          },
-        ]}
-      />
+      <Breadcrumb items={isPatientRoute ? getBreadcrumbItemsPatient() : getBreadcrumbItems()} />
       {isLoading ? (
         <Row justify="center">
           <Spin />

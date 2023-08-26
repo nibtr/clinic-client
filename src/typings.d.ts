@@ -20,12 +20,10 @@ declare module 'bizcharts-plugin-slider';
 declare const REACT_APP_ENV: 'test' | 'dev' | 'pre' | false;
 declare const HOST_NAME: string;
 
-
 type TLoginRequest = {
   username: string;
   password: string;
 };
-
 
 type TMenuItem = Required<MenuProps>['items'][number];
 
@@ -54,6 +52,8 @@ type TPatient = {
   drugContraindication: string;
   oralHealthStatus: string;
   allergyStatus: string;
+  PaymentRecord: TPaymentRecord[];
+  Session: TSession[];
 };
 
 type TAppointmentRequest = {
@@ -177,4 +177,12 @@ type TPaymentRecord = {
   method: string;
   patientID: number;
   treatmentSessionID: number;
+};
+
+type TTreatmentSession = {
+  id: number;
+  healthNote: string;
+  description: string;
+  categoryID: number;
+  paymentRecordID: number;
 };

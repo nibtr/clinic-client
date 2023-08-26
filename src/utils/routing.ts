@@ -6,3 +6,8 @@ export const getParams = (param: string) => {
 
   return params.get(param);
 };
+
+export const getSearching = () => {
+  const location = useLocation();
+  return location.search;
+};
