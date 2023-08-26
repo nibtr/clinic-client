@@ -1,5 +1,5 @@
 import { Col, Row } from 'antd';
-import { FacebookOutlined, InstagramOutlined, LinkedinOutlined } from '@ant-design/icons';
+import { ClockCircleOutlined, EnvironmentOutlined, FacebookOutlined, InstagramOutlined, LinkedinOutlined, PhoneOutlined } from '@ant-design/icons';
 
 import ClientProviderLayout from '../../components/ClientProvider';
 import Carousel from '../../components/Slider';
@@ -17,7 +17,7 @@ function PortalUI() {
     <main className="portal-wrapper">
       <header className="portal-header">
         <div className='header-image'>
-          <img className='img-logo' src={logo} alt="logo" />
+          <img className='img-logo' src={logo} alt="logo" loading="lazy" />
         </div>
       </header>
       <Carousel />
@@ -33,8 +33,8 @@ function PortalUI() {
               <div className="footer-left">
                 <h3>Communications </h3>
                 <ul>
-                  <li><a href="tel:(+84) 1234 4321">(+84) 1234 4321</a></li>
-                  <li>123 Nguyễn Văn Cừ / TP.HCM</li>
+                  <li><a href="tel:(+84) 1234 4321"><PhoneOutlined />(+84) 1234 4321</a></li>
+                  <li><EnvironmentOutlined />227 Nguyễn Văn Cừ / TP.HCM</li>
                 </ul>
               </div>
             </Col>
@@ -46,7 +46,7 @@ function PortalUI() {
                 <ul>
                   <li><a href="#">PRIVACY POLICY</a></li>
                   <li><a href="#">TERMS & CONDITIONS</a></li>
-                  <li><a href="#">COVID - 19 SAFETY & NOTICE</a></li>
+                  <li><a href="#">DENTAL SAFETY & NOTICE</a></li>
                   <li><a href="#">PAYMENT METHODS</a></li>
                 </ul>
 
@@ -62,10 +62,24 @@ function PortalUI() {
                     <li><a target="_blank"><LinkedinOutlined /></a></li>
                   </ul>
                 </div>
+                <table className="footer_table">
+                  <tbody>
+                    <tr>
+                      <td><ClockCircleOutlined /> Monday - Friday</td>
+                      <td>8:00am - 6:00pm</td>
+                    </tr>
+                    <tr>
+                      <td><ClockCircleOutlined /> Saturday - Sunday</td>
+                      <td>8:00am - 5:00pm</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </Col>
-
           </Row>
+          <div className="footer-bottom">
+            <p>Copyright © Dental Clinic 2023 | @group2.vn</p>
+          </div>
         </div>
       </footer>
     </main>
