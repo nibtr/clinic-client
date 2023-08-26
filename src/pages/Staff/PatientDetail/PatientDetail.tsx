@@ -50,7 +50,7 @@ const getCollapseItem = (detail: TPatient, navigateToTreatmentSession: (id: numb
       label: 'Treatment Session',
       children: (
         <Fragment>
-          <ListItem header fields={['Time', 'Status', 'Patient', 'Dentist', 'Room']} />
+          <ListItem header fields={['Time', 'Status', 'Dentist', 'Room', 'Note']} />
           {detail.Session.map((session) => {
             return (
               <ListItem
@@ -62,9 +62,9 @@ const getCollapseItem = (detail: TPatient, navigateToTreatmentSession: (id: numb
                 fields={[
                   splitDateTime(session.time),
                   convertSessionStatus(session.status as string),
-                  session.Patient.name,
                   session.Dentist.name,
                   session.Room.code,
+                  session.note || '',
                 ]}
               />
             );
