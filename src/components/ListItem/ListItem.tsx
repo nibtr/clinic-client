@@ -6,13 +6,19 @@ interface IListItemProps {
   fields: string[];
   header?: boolean;
   canDelete?: boolean;
+  notHover?: boolean;
   onClick?: () => void;
   onDelete?: () => void;
 }
 
-function ListItem({ fields, header, canDelete, onClick, onDelete }: IListItemProps) {
+function ListItem({ fields, header, canDelete, notHover, onClick, onDelete }: IListItemProps) {
   return (
-    <Row onClick={onClick} className={`list-item-wrapper trans-effect ${header ? '' : 'item'}`}>
+    <Row
+      onClick={onClick}
+      className={`list-item-wrapper trans-effect ${
+        header ? '' : `item ${notHover ? '' : 'hover'}`
+      }`}
+    >
       {fields.map((item: string, index: number) => {
         let span = index === 4 ? 6 : 4;
         return (
@@ -44,6 +50,7 @@ function ListItem({ fields, header, canDelete, onClick, onDelete }: IListItemPro
 ListItem.defaultProps = {
   header: false,
   canDelete: true,
+  notHover: false,
   onClick: () => {},
   onDelete: () => {},
 };

@@ -152,3 +152,9 @@ export const deleteAppointmentRequests = async (id: number) => {
     method: 'DELETE',
   });
 };
+
+export const getPatientDetail = async (id: number) => {
+  return request(GET_PATIENTS + '/' + id, {
+    method: 'GET',
+  });
+};

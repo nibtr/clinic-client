@@ -61,3 +61,14 @@ export const convertSessionStatusToColor = (status: string) => {
       return '';
   }
 };
+
+export const convertMethodPayment = (method: string) => {
+  switch (method) {
+    case 'C':
+      return 'Cash';
+    case 'O':
+      return 'Online';
+    default:
+      return '';
+  }
+};

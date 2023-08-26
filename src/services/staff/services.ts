@@ -9,6 +9,7 @@ import {
   getDentists,
   getExaminationDetail,
   getExaminations,
+  getPatientDetail,
   getPatients,
   getReExaminationOfExamination,
   getRooms,
@@ -176,5 +177,13 @@ export const useDeleteAppointmentRequest = (queryClient: QueryClient) => {
     onError: () => {
       message.error('Delete appointment request failed');
     },
+  });
+};
+
+export const useGetPatientDetail = (id: number) => {
+  return useQuery<TTemplateResponse<TPatient>, Error>({
+    queryKey: [...getKeyStaff.patients, id],
+    queryFn: () => getPatientDetail(id),
+    retry: false,
   });
 };

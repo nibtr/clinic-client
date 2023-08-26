@@ -7,11 +7,11 @@
     margin-bottom: 12px;
     border-bottom: 2px solid @neutral-2;
 
-    &:hover {
+    &.hover:hover {
+      border-color: transparent;
 
-        box-shadow: 2px 2px 4px 2px @neutral-4;
-        border-color: transparent;
-        cursor: pointer;
+      box-shadow: 2px 2px 4px 2px @neutral-4;
+      cursor: pointer;
       .wrap-delete-btn {
         opacity: 1;
       }
@@ -28,10 +28,10 @@
     opacity: 0;
 
     .delete-btn {
-        padding: 4px;
-        &:hover {
-            cursor: pointer;
-        }
+      padding: 4px;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

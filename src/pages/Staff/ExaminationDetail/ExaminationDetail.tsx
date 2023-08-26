@@ -1,4 +1,5 @@
-import { MALE_TYPE } from '@/constants/dataQuery';
+import FieldInfo from '@/components/FieldInfo';
+import PersonnelInfo from '@/components/PersonnelInfo';
 import { STAFF_EXAMINATION_LINK } from '@/constants/internalLink';
 import {
   convertSessionStatus,
@@ -7,39 +8,9 @@ import {
 } from '@/utils/convertData';
 import { Link } from '@umijs/max';
 import { Breadcrumb, Col, Divider, Empty, Row, Spin, Typography } from 'antd';
-import { Fragment, ReactNode } from 'react';
+import { Fragment } from 'react';
 import './ExaminationDetail.less';
 import useExaminationDetail from './useExaminationDetail';
-
-interface IFieldInfoProps {
-  label: string;
-  value: ReactNode;
-}
-
-const FieldInfo = ({ label, value }: IFieldInfoProps) => {
-  return (
-    <div className="flex-center field-info">
-      <label className="label">{label}:</label> <span className="value">{value}</span>
-    </div>
-  );
-};
-
-const renderPersonnelInfo = (personnel: TPersonnel | TPatient) => {
-  let gender = '';
-  if (personnel.gender) {
-    gender = personnel.gender === MALE_TYPE ? 'male' : 'female';
-  }
-
-  return (
-    <section>
-      <FieldInfo label="Name" value={personnel.name} />
-      <FieldInfo label="Gender" value={gender} />
-      <FieldInfo label="National ID" value={personnel.nationalID} />
-      <FieldInfo label="Date of Birth" value={splitDateTime(personnel.dob) || ''} />
-      <FieldInfo label="Phone" value={personnel.phone} />
-    </section>
-  );
-};
 
 const renderReExList = (reExList: TReExamination[]) => {
   if (reExList.length === 0) {
@@ -89,15 +60,15 @@ const renderItem = (
     <Row gutter={[16, 16]} justify="space-around">
       <Col span={8}>
         <Divider orientation="left">Patient</Divider>
-        {renderPersonnelInfo(examination.Patient)}
+        <PersonnelInfo personnel={examination.Patient} />
         <FieldInfo label="Drug Contraindication" value={examination.Patient.drugContraindication} />
         <FieldInfo label="Allergy Status" value={examination.Patient.allergyStatus} />
         <Divider orientation="left">Dentist</Divider>
-        {renderPersonnelInfo(examination.Dentist)}
+        <PersonnelInfo personnel={examination.Dentist} />
         {examination.Assistant && (
           <Fragment>
             <Divider orientation="left">Assistant</Divider>
-            {renderPersonnelInfo(examination.Assistant)}
+            <PersonnelInfo personnel={examination.Assistant} />
           </Fragment>
         )}
       </Col>
@@ -151,13 +122,13 @@ const renderItem = (
 };
 
 function ExaminationDetail() {
-  const { examination, isLoading, reExList, reExListLoading } = useExaminationDetail();
+  const { searching, examination, isLoading, reExList, reExListLoading } = useExaminationDetail();
   return (
     <div className="staff-examination-detail-wrapper">
       <Breadcrumb
         items={[
           {
-            title: <Link to={STAFF_EXAMINATION_LINK}>Examination</Link>,
+            title: <Link to={STAFF_EXAMINATION_LINK + searching}>Examination</Link>,
           },
           {
             title: 'Detail',
