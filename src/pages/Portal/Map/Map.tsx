@@ -15,7 +15,7 @@ function Map() {
                             <p>Address: 227 Nguyen Van Cu, Tp.Ho Chi Minh</p>
                             <p>Phone: +84 123 456 789</p>
                             <p>Email:
-                                <a href="mailto: trung@info.com.vn"> trung@info.com.vn</a></p>
+                                <a href="mailto: group2@info.com.vn"> group2@info.com.vn</a></p>
                         </div>
                     </Col>
 

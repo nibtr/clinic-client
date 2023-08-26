@@ -1,6 +1,6 @@
 .portal-wrapper {
   .portal-header {
-    background-color: #fff;
+    background-color: @neutral-1;
     box-shadow: 0 1px 10px rgba(95, 111, 149, 0.35);
     position: fixed;
     top: 0;
@@ -21,14 +21,14 @@
   .portal-footer {
     width: 100%;
     margin-top: 80px;
-    background: url(../../assets/images/footer.jpg) center no-repeat;
-    background-size: cover;
+    box-shadow: 0 1px 10px rgba(95, 111, 149, 0.35);
+
     .footer-container {
       max-width: 1920px;
       margin: 0px auto;
 
       .footer-row {
-        width: 80%;
+        width: 90%;
         margin: 0px auto;
 
         .footer-items {
@@ -37,7 +37,6 @@
           h3 {
             display: inline-block;
             font-size: 1.25rem;
-            color: #fff;
             line-height: 1.2;
             text-transform: uppercase;
           }
@@ -45,15 +44,19 @@
             color: @text-color;
             font-size: 1rem;
             line-height: 1.2;
-            padding-bottom: 0;
-            margin-bottom: 0;
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+
+            &:hover {
+              color: @primary-color;
+            }
           }
           .footer-title {
             width: 80%;
-            border-bottom: 2px solid #a61f2d;
-            margin-bottom: 24px;
+            border-bottom: 2px solid @primary-color;
+            margin-bottom: 16px;
           }
-          
+
           .footer-social {
             display: inline-block;
             margin-left: 32px;
@@ -63,12 +66,35 @@
               margin-left: 12px;
 
               a {
-                color: #fff;
+                color: @text-color;
                 font-size: 1.3rem;
+                &:hover {
+                  color: @primary-color;
+                }
+              }
+            }
+          }
+          .footer_table {
+            color: @text-color;
+            font-size: 1rem;
+            td {
+              padding: 4px 0px 4px 0px;
+              &:first-child {
+                padding-right: 20px;
               }
             }
           }
         }
+      }
+      .footer-bottom {
+        padding: 12px 0px 12px 0px;
+        border-top: 1px solid @neutral-3;
+        color: @text-color;
+        font-size: 1rem;
+        text-align: center;
+      }
+      ul li {
+        margin: 0px 0px 12px 0px;
       }
     }
   }
