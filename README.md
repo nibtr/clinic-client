@@ -1,57 +1,22 @@
-# Ant Design Pro
+# CSC12002 - DA#3: Dental Clinic Management System - Client
 
-This project is initialized with [Ant Design Pro](https://pro.ant.design). Follow is the quick guide for how to use.
+This is the repo for the client source code of the Dental Clinic project for the course CSC12002 - Advanced Database at HCMUS.
 
-## Environment Prepare
+## Tech stack
 
-Install `node_modules`:
+- Ant Design Pro
 
-```bash
-npm install
-```
+## Server
 
-or
+The repo for the server can be found [here](https://github.com/nhthieu/dental-clinic-server).
 
-```bash
-yarn
-```
+## Database
 
-## Provided Scripts
+The repo for the client can be found [here](https://github.com/nhthieu/dental-clinic-database).
 
-Ant Design Pro provides some useful script to help you quick start and build with web project, code style check and test.
+## Contributors
 
-Scripts provided in `package.json`. It's safe to modify or add additional script:
-
-### Start project
-
-```bash
-npm start
-```
-
-### Build project
-
-```bash
-npm run build
-```
-
-### Check code style
-
-```bash
-npm run lint
-```
-
-You can also use script to auto fix some lint error:
-
-```bash
-npm run lint:fix
-```
-
-### Test code
-
-```bash
-npm test
-```
-
-## More
-
-You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro).
+- [Hieu Nguyen Ho Trung](https://github.com/nhthieu)
+- [Nam Vu Hoai](https://github.com/namhoai1109)
+- [Man Nguyen Huynh](https://github.com/nhman2002)
+- [Trung Thieu Vinh](https://github.com/tvtrungg)
